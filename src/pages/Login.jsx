@@ -16,7 +16,7 @@ const Login = () => {
                 <Input type={`${showPassword ? 'text' : 'password'}`} titleName={'Senha'} iconName={<LockIcon className='text-[var(--color-2)]' />} placeholder={'••••••'} maxLength={6} eyeIcon={showPassword ? <EyeIcon onClick={() => setShowPassword(!showPassword)} className='text-[var(--color-2)]' /> : <EyeOff onClick={() => setShowPassword(!showPassword)} className='text-[var(--color-2)]' />} />
                 <Button className={'mt-4'}>Entrar</Button>
             </form>
-            <p>Não possui uma conta? <Link className='text-[var(--color-1)] font-semibold' to={'/register'}>Registre-se</Link></p>
+            <p className='text-[.9rem]'>Não possui uma conta? <Link className='text-[var(--color-1)] font-semibold' to={'/register'}>Registre-se</Link></p>
         </section>
     )
 }
