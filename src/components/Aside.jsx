@@ -15,7 +15,7 @@ const Aside = () => {
                 <NavLink to={'/dashboard'} className={'flex flex-col items-center gap-1.5 '}>
                     {({ isActive }) => (
                         <>
-                            <LayoutDashboardIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"}`} />
+                            <LayoutDashboardIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"} size-5`} />
                             <span className={`text-[13px] opacity-0 font-medium  transition-opacity ${isActive && "opacity-100 text-[var(--color-1)]"}`}>Dashboard</span>
                         </>
                     )}
@@ -23,7 +23,7 @@ const Aside = () => {
                 <NavLink to={'/historic'} className={'flex flex-col items-center gap-1.5'}>
                     {({ isActive }) => (
                         <>
-                            <HistoryIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"}`} />
+                            <HistoryIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"} size-5`} />
                             <span className={`text-[13px] opacity-0 font-medium transition-opacity ${isActive && "opacity-100 text-[var(--color-1)]"}`}>Histórico</span>
                         </>
                     )}
@@ -31,7 +31,7 @@ const Aside = () => {
                 <NavLink to={'/option'} className={'flex flex-col items-center gap-1.5'}>
                     {({ isActive }) => (
                         <>
-                            <SettingsIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"}`} />
+                            <SettingsIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"} size-5`} />
                             <span className={`text-[13px] opacity-0 font-medium  transition-opacity ${isActive && "opacity-100 text-[var(--color-1)]"}`}>Opções</span>
                         </>
                     )}
@@ -39,7 +39,7 @@ const Aside = () => {
                 <NavLink to={'/perfil'} className={'flex flex-col items-center gap-1.5'}>
                     {({ isActive }) => (
                         <>
-                            <UserIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"}`} />
+                            <UserIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"} size-5`} />
                             <span className={`text-[13px] opacity-0 font-medium  transition-opacity ${isActive && "opacity-100 text-[var(--color-1)]"}`}>Perfil</span>
                         </>
                     )}
