@@ -7,25 +7,49 @@ import Aside from './components/Aside'
 import Header from './components/Header'
 import AddRace from './pages/addRace/AddRace'
 import Loading from './components/Global/Loading'
+import PublicRoute from './routes/PublicRoutes'
+import PrivateRoute from './routes/PrivateRoutes'
+import { useAuth } from './contexts/AuthContext'
 const Dashboard = lazy(() => import('./pages/dashboard/Dashboard'))
 
 const App = () => {
+    const { isAuthenticated } = useAuth()
+
     return (
         <main className='min-h-screen'>
-            <Header />
+            {
+                isAuthenticated && <Aside /> && <Header />
+            }
             <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
+                <Route path='/' element={
+                    <PublicRoute>
+                        <Home />
+                    </PublicRoute>
+                } />
+                <Route path='/login' element={
+                    <PublicRoute>
+                        <Login />
+                    </PublicRoute>
+                } />
+                <Route path='/register' element={
+                    <PublicRoute>
+                        <Register />
+                    </PublicRoute>
+                } />
                 <Route path='/dashboard'
                     element={
                         <Suspense fallback={<Loading />}>
-                            <Dashboard />
+                            <PrivateRoute>
+                                <Dashboard />
+                            </PrivateRoute>
                         </Suspense>
                     } />
-                <Route path='/add-race' element={<AddRace />} />
+                <Route path='/add-race' element={
+                    <PrivateRoute>
+                        <AddRace />
+                    </PrivateRoute>
+                } />
             </Routes>
-            <Aside />
         </main>
     )
 }
