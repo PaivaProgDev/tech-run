@@ -17,12 +17,12 @@ const App = () => {
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
-                <Route path='/dashboard' element={
-
-                    <Suspense fallback={<Loading />}>
-                        <Dashboard />
-                    </Suspense>
-                } />
+                <Route path='/dashboard'
+                    element={
+                        <Suspense fallback={<Loading />}>
+                            <Dashboard />
+                        </Suspense>
+                    } />
                 <Route path='/add-race' element={<AddRace />} />
             </Routes>
             <Aside />
