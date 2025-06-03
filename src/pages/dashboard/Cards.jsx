@@ -6,25 +6,25 @@ const Cards = () => {
             id: 1,
             title: "Treinos registrados",
             icon: <BicepsFlexed className='text-[#4286e9] size-5' />,
-            total: 45
+            total: 0
         },
         {
             id: 2,
             title: "Treinos concluídos",
             icon: <FileClock className='text-[#3a7245] size-5' />,
-            total: 12
+            total: 0
         },
         {
             id: 3,
             title: "Total de calorias",
             icon: <Flame className='text-[#B64C4C] size-5' />,
-            total: 3500
+            total: 0
         },
         {
             id: 4,
             title: "Distância (Km)",
             icon: <Flag className='text-[#7134FF] size-5' />,
-            total: 10.249
+            total: 0
         },
     ]
 

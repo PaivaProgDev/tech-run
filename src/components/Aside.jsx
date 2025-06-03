@@ -29,9 +29,9 @@ const Aside = () => {
                         </>
                     )}
                 </NavLink>
-                <Button className={'h-fit! px-2! py-2! -translate-y-1'}>
+                <NavLink to={'/add-race'} className={'h-fit! px-2! py-2! -translate-y-1 bg-[var(--color-1)] rounded-md text-white'}>
                     <Plus className="size-5" />
-                </Button>
+                </NavLink>
                 <NavLink to={'/option'} className={'flex flex-col items-center gap-1.5'}>
                     {({ isActive }) => (
                         <>
