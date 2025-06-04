@@ -7,7 +7,7 @@ import { useAuth } from '../contexts/AuthContext'
 
 const Perfil = () => {
     const navigate = useNavigate()
-    const { setIsAuthenticated, setUserCredential } = useAuth()
+    const { setIsAuthenticated, setUserCredential, userCredential } = useAuth()
 
     const handleBackPage = () => {
         navigate(-1)
@@ -35,7 +35,7 @@ const Perfil = () => {
                     <img className='rounded-full' src={PerfilImage} alt="Foto de perfil do usuário" />
                 </div>
                 <h1 className='text-2xl font-semibold text-[var(--color-3)] mt-5 mb-1'>
-                    <pre>Guilherme Paiva</pre>
+                    <pre>{userCredential.displayName}</pre>
                 </h1>
                 <pre className='text-gray-400 text-center text-[14px]'>
                     gui@gmail.com

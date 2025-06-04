@@ -14,9 +14,18 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const handleSigInUser = async (e) => {
+
         e.preventDefault()
+
+        if (!email || password.length < 6) {
+            return
+        }
+
+        setLoading(true)
+
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password)
             const user = userCredential.user
@@ -25,13 +34,12 @@ const Login = () => {
                 setIsAuthenticated(true)
                 setUserCredential(user)
                 navigate('/dashboard')
-
-                return;
             }
 
-
+            setLoading(false)
         } catch (error) {
             console.log(error.message)
+        } finally {
         }
     }
 
@@ -44,7 +52,7 @@ const Login = () => {
             <form onSubmit={handleSigInUser} className='shadow-lg w-full py-6 px-7 rounded-xl bg-white flex flex-col gap-3 mb-4'>
                 <Input onChange={(e) => setEmail(e.target.value)} type={'email'} titleName={'Email'} iconName={<MailIcon className='text-[var(--color-2)]' />} placeholder={'seu@email.com'} />
                 <Input onChange={(e) => setPassword(e.target.value)} type={`${showPassword ? 'text' : 'password'}`} titleName={'Senha'} iconName={<LockIcon className='text-[var(--color-2)]' />} placeholder={'••••••'} maxLength={6} eyeIcon={showPassword ? <EyeIcon onClick={() => setShowPassword(!showPassword)} className='text-[var(--color-2)]' /> : <EyeOff onClick={() => setShowPassword(!showPassword)} className='text-[var(--color-2)]' />} />
-                <Button className={'mt-4'}>Entrar</Button>
+                <Button className={' mt-4'}>{loading ? <div className='flex items-center justify-center gap-3'><span className="loader !w-[24px] !h-[24px]"></span><span className='font-normal text-[14px]'>Aguarde...</span></div> : "Entrar"}</Button>
             </form>
             <p className='text-[.9rem]'>Não possui uma conta? <Link className='text-[var(--color-1)] font-semibold' to={'/register'}>Registre-se</Link></p>
         </section>

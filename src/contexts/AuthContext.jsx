@@ -31,7 +31,8 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated,
         setUserCredential,
         userCredential,
-        loading
+        loading,
+        setLoading
     }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
