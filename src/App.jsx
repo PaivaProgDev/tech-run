@@ -10,6 +10,7 @@ import Loading from './components/Global/Loading'
 import PublicRoute from './routes/PublicRoutes'
 import PrivateRoute from './routes/PrivateRoutes'
 import { useAuth } from './contexts/AuthContext'
+import Perfil from './pages/Perfil'
 const Dashboard = lazy(() => import('./pages/dashboard/Dashboard'))
 
 const App = () => {
@@ -18,7 +19,12 @@ const App = () => {
     return (
         <main className='min-h-screen'>
             {
-                isAuthenticated && <Aside /> && <Header />
+                isAuthenticated && (
+                    <>
+                        <Aside />
+                        <Header />
+                    </>
+                )
             }
             <Routes>
                 <Route path='/' element={
@@ -47,6 +53,11 @@ const App = () => {
                 <Route path='/add-race' element={
                     <PrivateRoute>
                         <AddRace />
+                    </PrivateRoute>
+                } />
+                <Route path='/perfil' element={
+                    <PrivateRoute>
+                        <Perfil />
                     </PrivateRoute>
                 } />
             </Routes>

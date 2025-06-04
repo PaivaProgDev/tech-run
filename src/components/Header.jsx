@@ -1,6 +1,8 @@
 import React from 'react'
 import Logo from './Global/Logo'
 import { useAuth } from '../contexts/AuthContext'
+import { Link } from 'react-router-dom'
+import { ArrowRightIcon } from 'lucide-react'
 
 const Header = () => {
     const { userCredential } = useAuth()
@@ -9,7 +11,14 @@ const Header = () => {
         <header className='flex items-center justify-between z-10 bg-white py-3 px-4 border-b fixed top-0 w-full border-gray-300'>
             <div className='flex items-center gap-2'>
                 <div className='h-8 w-8 bg-amber-500 rounded-full'></div>
-                <span className='text-[13px] text-[var(--color-3)]'>Olá, {userCredential.displayName}</span>
+                <div>
+                    <pre className='text-[14px] text-[var(--color-3)]'>Olá, <strong>{userCredential.displayName}</strong></pre>
+                    <Link to={'/perfil'} className='text-[13px] font-medium text-[var(--color-2)] flex items-center gap-1'>
+                        Ver perfil
+                        <ArrowRightIcon className='size-4 text-[var(--color-2)]' />
+                    </Link>
+
+                </div>
             </div>
             <Logo />
         </header>
