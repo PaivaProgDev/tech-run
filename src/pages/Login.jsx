@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../services/firebase'
 import { useAuth } from '../contexts/AuthContext'
+import Loading from '../components/Global/Loading'
 
 const Login = () => {
     const { setIsAuthenticated, setUserCredential } = useAuth()
@@ -15,13 +16,15 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState('')
 
     const handleSigInUser = async (e) => {
 
         e.preventDefault()
 
-        if (!email || password.length < 6) {
-            return
+        if (!email || !password) {
+            setEmail('Todos os campos são obrigatórios')
+            return;
         }
 
         setLoading(true)
@@ -38,12 +41,19 @@ const Login = () => {
 
             setLoading(false)
         } catch (error) {
-            console.log(error.message)
-        } finally {
+            setLoading(false)
+            switch (error.code) {
+                case "auth/email-already-exists":
+                    setMessage("E-mail inválido")
+                    break
+                case "auth/invalid-credential":
+                    setMessage("E-mail ou senha incorretos")
+                    break
+                default: setMessage("Preencha todos os campos")
+                    break
+            }
         }
     }
-
-
 
     return (
         <section className='flex flex-col min-h-screen justify-center items-center gap-4 py-6 px-5 bg-[var(--color-bg)]'>
@@ -51,8 +61,9 @@ const Login = () => {
             <p className='text-center text-[var(--color-2)]'>Entre para acessar o painel de gerenciamento</p>
             <form onSubmit={handleSigInUser} className='shadow-lg w-full py-6 px-7 rounded-xl bg-white flex flex-col gap-3 mb-4'>
                 <Input onChange={(e) => setEmail(e.target.value)} type={'email'} titleName={'Email'} iconName={<MailIcon className='text-[var(--color-2)]' />} placeholder={'seu@email.com'} />
-                <Input onChange={(e) => setPassword(e.target.value)} type={`${showPassword ? 'text' : 'password'}`} titleName={'Senha'} iconName={<LockIcon className='text-[var(--color-2)]' />} placeholder={'••••••'} maxLength={6} eyeIcon={showPassword ? <EyeIcon onClick={() => setShowPassword(!showPassword)} className='text-[var(--color-2)]' /> : <EyeOff onClick={() => setShowPassword(!showPassword)} className='text-[var(--color-2)]' />} />
-                <Button className={' mt-4'}>{loading ? <div className='flex items-center justify-center gap-3'><span className="loader !w-[24px] !h-[24px]"></span><span className='font-normal text-[14px]'>Aguarde...</span></div> : "Entrar"}</Button>
+                <Input onChange={(e) => setPassword(e.target.value)} type={`${showPassword ? 'text' : 'password'}`} titleName={'Senha'} iconName={<LockIcon className='text-[var(--color-2)]' />} placeholder={'••••••'} minLength={6} eyeIcon={showPassword ? <EyeIcon onClick={() => setShowPassword(!showPassword)} className='text-[var(--color-2)]' /> : <EyeOff onClick={() => setShowPassword(!showPassword)} className='text-[var(--color-2)]' />} />
+                <p className='text-[13px] text-red-400'>{message}</p>
+                <Button className={' mt-4'}>{loading ? <div className='flex items-center justify-center gap-3'><span className="loader !w-[24px] !h-[24px]"></span><span className='font-light text-[14px]'>Aguarde...</span></div> : <span className='font-normal text-[14px]'>Entrar</span>}</Button>
             </form>
             <p className='text-[.9rem]'>Não possui uma conta? <Link className='text-[var(--color-1)] font-semibold' to={'/register'}>Registre-se</Link></p>
         </section>

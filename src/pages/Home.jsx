@@ -12,7 +12,7 @@ const Home = () => {
                     <Link to={"/login"} className="w-full">
                         <Button className={"w-full"}>Entrar</Button>
                     </Link>
-                    <Link className="w-full">
+                    <Link to={'/register'} className="w-full">
                         <Button className={"w-full"}>Cadastrar</Button>
                     </Link>
                 </div>

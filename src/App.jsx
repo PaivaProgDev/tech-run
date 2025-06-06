@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import Home from './pages/Home'
-import Register from './pages/Register'
 import Aside from './components/Aside'
 import Header from './components/Header'
 import AddRace from './pages/addRace/AddRace'
@@ -12,6 +11,7 @@ import { useAuth } from './contexts/AuthContext'
 const Dashboard = lazy(() => import('./pages/dashboard/Dashboard'))
 const Perfil = lazy(() => import('./pages/Perfil'))
 const Login = lazy(() => import('./pages/Login'))
+const Register = lazy(() => import('./pages/Register'))
 
 const App = () => {
     const { isAuthenticated } = useAuth()
