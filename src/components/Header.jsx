@@ -17,7 +17,7 @@ const Header = () => {
                         </div>
                         :
                         <div className='bg-slate-300 p-1 rounded-full'>
-                            <UserIcon className='size-5 text-[var(--color-2)]' />
+                            <UserIcon className='size-6 text-[var(--color-2)]' />
                         </div>
                 }
                 <div>

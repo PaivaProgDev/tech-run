@@ -70,9 +70,7 @@ const App = () => {
                 } />
                 <Route path='*' element={
                     <Suspense fallback={<Loading />}>
-                        <PublicRoute>
-                            <NotFound />
-                        </PublicRoute>
+                        <NotFound />
                     </Suspense>
                 } />
             </Routes>

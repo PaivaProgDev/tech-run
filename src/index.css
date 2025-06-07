@@ -40,18 +40,11 @@ select {
   }
 }
 
-.my-theme {
-  --uc-simple-btn-font-family: system-ui;
-  --uc-simple-btn-font-size: 14px;
-  --uc-simple-btn-padding: 7px 14px;
+uc-simple-btn button {
+  padding: 6px;
+  background-color: var(--color-1);
+}
 
-  /* Light colors */
-  --uc-simple-btn-light: oklch(94% 0 0);
-  --uc-simple-btn-hover-light: oklch(92% 0 0);
-  --uc-simple-btn-foreground-light: oklch(20% 0 0);
-
-  /* Dark colors */
-  --uc-simple-btn-dark: oklch(26% 0 0);
-  --uc-simple-btn-hover-dark: oklch(29% 0 0);
-  --uc-simple-btn-foreground-dark: oklch(100% 0 0);
+uc-simple-btn button span {
+  display: none;
 }

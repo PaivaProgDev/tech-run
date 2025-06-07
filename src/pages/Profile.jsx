@@ -4,10 +4,10 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import { signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../services/firebase';
 import { useAuth } from '../contexts/AuthContext'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FileUploaderRegular } from '@uploadcare/react-uploader';
 import '@uploadcare/react-uploader/core.css';
-import Button from '../components/Global/Button';
+
 
 
 const Profile = () => {
@@ -26,11 +26,18 @@ const Profile = () => {
         setUserCredential(null)
     }
 
+
     const user = auth.currentUser
+    console.log(userCredential)
 
     const handleUpdatePhoto = async (cdnUrl) => {
         if (user) {
-            await updateProfile(user, {
+            updateProfile(user, {
+                photoURL: cdnUrl
+            })
+
+            setUserCredential({
+                ...userCredential,
                 photoURL: cdnUrl
             })
         }
@@ -47,25 +54,24 @@ const Profile = () => {
                 </div>
             </div>
 
-            <FileUploaderRegular
-                sourceList="local, camera"
-                cameraModes="photo"
-                classNameUploader="--uc-simple-btn-font-size"
-                className='my-theme'
-                pubkey="56aedfc665a0dce4a57b"
-                onCommonUploadSuccess={(e) =>
-                    e.successEntries.map((entry) => {
-                        setPhotoUrl(entry.cdnUrl)
-                        handleUpdatePhoto(entry.cdnUrl)
-                    })
-                }
 
-            />
             <div className='mt-10 flex flex-col items-center'>
                 {
                     userCredential.photoURL !== null ?
-                        <div className='rounded-full w-full max-w-[8rem] flex items-center justify-center'>
-                            <img className='rounded-full' src={userCredential.photoURL} alt="Foto de perfil do usuário" /> :
+                        <div className='rounded-full w-full relative max-w-[8rem] flex items-center justify-center'>
+                            <img className='rounded-full' src={userCredential.photoURL} alt="Foto de perfil do usuário" />
+                            <FileUploaderRegular
+                                sourceList="local, camera"
+                                cameraModes="photo"
+                                pubkey="56aedfc665a0dce4a57b"
+                                className='absolute right-0 bottom-0'
+                                onCommonUploadSuccess={(e) =>
+                                    e.successEntries.map((entry) => {
+                                        setPhotoUrl(entry.cdnUrl)
+                                        handleUpdatePhoto(entry.cdnUrl)
+                                    })
+                                }
+                            />
                         </div>
                         :
                         <div className='bg-slate-300 p-3 rounded-full'>
