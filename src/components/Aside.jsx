@@ -40,7 +40,7 @@ const Aside = () => {
                         </>
                     )}
                 </NavLink>
-                <NavLink to={'/perfil'} className={'flex flex-col items-center gap-1.5'}>
+                <NavLink to={'/profile'} className={'flex flex-col items-center gap-1.5'}>
                     {({ isActive }) => (
                         <>
                             <UserIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"} size-5`} />

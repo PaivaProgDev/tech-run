@@ -8,10 +8,14 @@ import Loading from './components/Global/Loading'
 import PublicRoute from './routes/PublicRoutes'
 import PrivateRoute from './routes/PrivateRoutes'
 import { useAuth } from './contexts/AuthContext'
+// import NotFound from './pages/NotFound'
 const Dashboard = lazy(() => import('./pages/dashboard/Dashboard'))
-const Perfil = lazy(() => import('./pages/Perfil'))
+const Profile = lazy(() => import('./pages/Profile'))
 const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+
+
 
 const App = () => {
     const { isAuthenticated } = useAuth()
@@ -33,9 +37,11 @@ const App = () => {
                     </PublicRoute>
                 } />
                 <Route path='/login' element={
-                    <PublicRoute>
-                        <Login />
-                    </PublicRoute>
+                    <Suspense fallback={<Loading />}>
+                        <PublicRoute>
+                            <Login />
+                        </PublicRoute>
+                    </Suspense>
                 } />
                 <Route path='/register' element={
                     <PublicRoute>
@@ -55,11 +61,18 @@ const App = () => {
                         <AddRace />
                     </PrivateRoute>
                 } />
-                <Route path='/perfil' element={
+                <Route path='/profile' element={
                     <Suspense fallback={<Loading />}>
                         <PrivateRoute>
-                            <Perfil />
+                            <Profile />
                         </PrivateRoute>
+                    </Suspense>
+                } />
+                <Route path='*' element={
+                    <Suspense fallback={<Loading />}>
+                        <PublicRoute>
+                            <NotFound />
+                        </PublicRoute>
                     </Suspense>
                 } />
             </Routes>
