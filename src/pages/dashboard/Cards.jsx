@@ -1,12 +1,15 @@
 import { BicepsFlexed, FileClock, Flag, Flame } from 'lucide-react'
+import { useAuth } from '../../contexts/AuthContext'
 
 const Cards = () => {
+    const { races, calories, distance } = useAuth()
+
     const cards = [
         {
             id: 1,
             title: "Treinos registrados",
             icon: <BicepsFlexed className='text-[#4286e9] size-5' />,
-            total: 0
+            total: races.length,
         },
         {
             id: 2,
@@ -18,13 +21,13 @@ const Cards = () => {
             id: 3,
             title: "Total de calorias",
             icon: <Flame className='text-[#B64C4C] size-5' />,
-            total: 0
+            total: calories.reduce((acc, values) => acc + values, 0),
         },
         {
             id: 4,
             title: "Distância (Km)",
             icon: <Flag className='text-[#7134FF] size-5' />,
-            total: 0
+            total: distance.reduce((acc, values) => acc + values, 0),
         },
     ]
 
