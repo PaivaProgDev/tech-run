@@ -3,8 +3,6 @@ import { auth } from "../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../services/firebase";
-import { Navigate } from "react-router-dom";
-
 
 const AuthContext = createContext()
 
@@ -15,25 +13,32 @@ export const AuthProvider = ({ children }) => {
     const [races, setRaces] = useState([])
     const [calories, setCalories] = useState([])
     const [distance, setDistance] = useState([])
+    const [isConcluded, setIsConcluded] = useState([])
+    const [data, setData] = useState()
 
     const handleGetDataUser = async (user) => {
+        const racesData = []
+        const caloriesData = []
+        const distanceData = []
+        const isConcludedData = []
+        const idData = []
+
         const queryDoc = await getDocs(collection(db, "users", user.uid, "races"));
+
         queryDoc.forEach((doc) => {
-            setRaces(prev => [
-                ...prev,
-                doc.data()
-            ])
-
-            setCalories(prev => [
-                ...prev,
-                doc.data().calories
-            ])
-
-            setDistance(prev => [
-                ...prev,
-                doc.data().distance
-            ])
+            idData.push(doc);
+            const data = doc.data()
+            racesData.push(data)
+            caloriesData.push(data.calories)
+            distanceData.push(data.distance)
+            isConcludedData.push(data.isConcluded)
         });
+
+        setRaces(racesData)
+        setCalories(caloriesData)
+        setDistance(distanceData)
+        setIsConcluded(isConcludedData)
+        setData(idData)
     }
 
     useEffect(() => {
@@ -42,7 +47,6 @@ export const AuthProvider = ({ children }) => {
                 setUserCredential(user)
                 setIsAuthenticated(true)
                 handleGetDataUser(user)
-
             } else {
                 setUserCredential(null)
                 setIsAuthenticated(false)
@@ -61,9 +65,12 @@ export const AuthProvider = ({ children }) => {
         loading,
         setLoading,
         races,
+        setRaces,
         calories,
         distance,
-        handleGetDataUser
+        isConcluded,
+        handleGetDataUser,
+        data
     }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

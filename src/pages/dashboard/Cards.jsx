@@ -2,7 +2,7 @@ import { BicepsFlexed, FileClock, Flag, Flame } from 'lucide-react'
 import { useAuth } from '../../contexts/AuthContext'
 
 const Cards = () => {
-    const { races, calories, distance } = useAuth()
+    const { races, calories, distance, isConcluded } = useAuth()
 
     const cards = [
         {
@@ -15,7 +15,7 @@ const Cards = () => {
             id: 2,
             title: "Treinos concluídos",
             icon: <FileClock className='text-[#3a7245] size-5' />,
-            total: 0
+            total: isConcluded.filter(Boolean).length,
         },
         {
             id: 3,

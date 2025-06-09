@@ -2,6 +2,7 @@ import Cards from './Cards'
 import Button from '../../components/Global/Button'
 import { CirclePlus } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import LatestActivities from './LatestActivities'
 
 const Dashboard = () => {
     return (
@@ -16,6 +17,9 @@ const Dashboard = () => {
             </Link>
             <div className='flex flex-col gap-3'>
                 <Cards />
+            </div>
+            <div className='mt-10'>
+                <LatestActivities />
             </div>
         </main>
     )

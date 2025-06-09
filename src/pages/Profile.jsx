@@ -24,13 +24,13 @@ const Profile = () => {
   };
 
   const handleUpdatePhoto = async (cdnUrl) => {
-    if (auth.currentUser) {
-      updateProfile(auth.currentUser, {
+    if (userCredential) {
+      updateProfile(userCredential, {
         photoURL: cdnUrl,
       });
 
       setUserCredential({
-        ...auth.currentUser,
+        ...userCredential,
         photoURL: cdnUrl,
       });
     }
@@ -62,7 +62,7 @@ const Profile = () => {
               alt="Foto de perfil do usuário"
             />
             <FileUploaderRegular
-              sourceList="local, camera"
+              sourceList="local"
               cameraModes="photo"
               pubkey="56aedfc665a0dce4a57b"
               className="absolute right-0 bottom-0"
@@ -77,13 +77,12 @@ const Profile = () => {
           <div className="bg-slate-300 p-6 rounded-full relative">
             <UserIcon className="size-12 text-[var(--color-2)]" />
             <FileUploaderRegular
-              sourceList="local, camera"
+              sourceList="local"
               cameraModes="photo"
               pubkey="56aedfc665a0dce4a57b"
               className="absolute right-0 bottom-0"
               onCommonUploadSuccess={(e) =>
                 e.successEntries.map((entry) => {
-                  setPhotoUrl(entry.cdnUrl);
                   handleUpdatePhoto(entry.cdnUrl);
                 })
               }

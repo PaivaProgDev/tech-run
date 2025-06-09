@@ -3,19 +3,16 @@ import { lazy, Suspense } from 'react'
 import Home from './pages/Home'
 import Aside from './components/Aside'
 import Header from './components/Header'
-import AddRace from './pages/addRace/AddRace'
+import AddRace from './pages/AddRace'
 import Loading from './components/Global/Loading'
 import PublicRoute from './routes/PublicRoutes'
 import PrivateRoute from './routes/PrivateRoutes'
 import { useAuth } from './contexts/AuthContext'
-// import NotFound from './pages/NotFound'
 const Dashboard = lazy(() => import('./pages/dashboard/Dashboard'))
 const Profile = lazy(() => import('./pages/Profile'))
 const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
 const NotFound = lazy(() => import('./pages/NotFound'))
-
-
 
 const App = () => {
     const { isAuthenticated } = useAuth()
