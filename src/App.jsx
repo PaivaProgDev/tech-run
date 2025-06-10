@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
-import Home from './pages/Home'
 import Aside from './components/Aside'
 import Header from './components/Header'
 import AddRace from './pages/AddRace'
@@ -13,6 +12,8 @@ const Profile = lazy(() => import('./pages/Profile'))
 const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
 const NotFound = lazy(() => import('./pages/NotFound'))
+const Historic = lazy(() => import('./pages/Historic'))
+const Home = lazy(() => import('./pages/Home'))
 
 const App = () => {
     const { isAuthenticated } = useAuth()
@@ -29,9 +30,11 @@ const App = () => {
             }
             <Routes>
                 <Route path='/' element={
-                    <PublicRoute>
-                        <Home />
-                    </PublicRoute>
+                    <Suspense fallback={<Loading />}>
+                        <PublicRoute>
+                            <Home />
+                        </PublicRoute>
+                    </Suspense>
                 } />
                 <Route path='/login' element={
                     <Suspense fallback={<Loading />}>
@@ -62,6 +65,13 @@ const App = () => {
                     <Suspense fallback={<Loading />}>
                         <PrivateRoute>
                             <Profile />
+                        </PrivateRoute>
+                    </Suspense>
+                } />
+                <Route path='/historic' element={
+                    <Suspense fallback={<Loading />}>
+                        <PrivateRoute>
+                            <Historic />
                         </PrivateRoute>
                     </Suspense>
                 } />

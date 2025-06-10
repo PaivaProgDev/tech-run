@@ -1,6 +1,6 @@
 import Button from '../components/Global/Button'
 import Input from '../components/Global/Input'
-import { Activity, CirclePlus, SaveIcon } from 'lucide-react'
+import { Activity, SaveIcon } from 'lucide-react'
 import { useState } from 'react'
 import { addDoc, collection } from 'firebase/firestore'
 import { useAuth } from '../contexts/AuthContext'
@@ -11,6 +11,7 @@ const AddRace = () => {
 
     const [date, setDate] = useState('')
     const [typeRace, setTypeRace] = useState('')
+    const [period, setPeriod] = useState('')
     const [distance, setDistance] = useState('')
     const [duration, setDuration] = useState('')
     const [calories, setCalories] = useState('')
@@ -22,12 +23,13 @@ const AddRace = () => {
         try {
             await addDoc(collection(db, "users", userCredential.uid, "races"), {
                 date: date,
-                typeRace: typeRace || '',
+                typeRace: typeRace,
+                period: period || "",
+                duration: duration || '',
+                observation: observation || "",
                 distance: Number(distance || null),
-                duration: Number(duration || null),
                 calories: Number(calories || null),
                 isConcluded: Boolean(isConcluded),
-                observation: observation || "",
             })
 
             handleGetDataUser(userCredential)
@@ -35,7 +37,6 @@ const AddRace = () => {
             console.log(error.code)
         }
     }
-
     return (
         <main className='pt-24 px-4 pb-22 bg-[var(--color-bg)] min-h-screen'>
             <div className='flex items-center gap-4'>
@@ -46,11 +47,12 @@ const AddRace = () => {
             <form onSubmit={handleAddRace} className='shadow-lg w-full py-5 px-6 rounded-xl border-2 border-gray-200 bg-white flex flex-col gap-3 mb-4'>
                 <label className='flex gap-2'>
                     <input type="checkbox" onChange={(e) => {
-                        const checked = !e.target.checked
-                        setIsConcluded(checked)
+                        const checked = e.target.checked
+                        setIsConcluded(!checked)
 
-                        if (!checked) {
+                        if (checked) {
                             setTypeRace('')
+                            setPeriod('')
                             setDistance('')
                             setDuration('')
                             setCalories('')
@@ -63,23 +65,35 @@ const AddRace = () => {
                 <Input onChange={(e) => setDate(e.target.value)} type={'date'} titleName={'Data'} placeholder={'seu@email.com'} required={true} />
                 <div>
                     <span className='text-[12px]'>Tipo</span>
-                    <select disabled={!isConcluded && true} onChange={(e) => {
+                    <select value={typeRace} disabled={!isConcluded} onChange={(e) => {
                         setTypeRace(e.target.value)
                     }} className="disabled:text-transparent w-full flex text-[13px] mt-2 items-center gap-3 border border-gray-200 bg-[var(--color-bg)] focus-within:border-[var(--color-1)] rounded-lg px-2.5 py-1.5" required>
-                        <option value="corrida">Ar livre</option>
-                        <option value="caminhada">Esteira</option>
+                        <option value="" disabled>Selecionar</option>
+                        <option value="Ar livre">Ar livre</option>
+                        <option value="Esteira">Esteira</option>
+                    </select>
+                </div>
+                <div>
+                    <span className='text-[12px]'>Período</span>
+                    <select value={period} disabled={!isConcluded} onChange={(e) => {
+                        setPeriod(e.target.value)
+                    }} className="disabled:text-transparent w-full flex text-[13px] mt-2 items-center gap-3 border border-gray-200 bg-[var(--color-bg)] focus-within:border-[var(--color-1)] rounded-lg px-2.5 py-1.5" required>
+                        <option value="" disabled>Selecionar</option>
+                        <option value="Manhã">Manhã</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noite">Noite</option>
                     </select>
                 </div>
                 <Input className="disabled:text-transparent" onChange={(e) => {
                     setDistance(e.target.value)
-                }} type={'number'} titleName={'Distância (km)'} value={distance} disabled={!isConcluded && true} placeholder={'5.0'} required={true} />
+                }} type={'number'} titleName={'Distância (km)'} value={distance} disabled={!isConcluded} placeholder={'5.0'} required={true} />
                 <Input className="disabled:text-transparent" onChange={(e) => {
                     setDuration(e.target.value)
                 }
-                } type={'number'} titleName={'Duração'} value={duration} disabled={!isConcluded && true} placeholder={'40:00'} required={true} />
+                } type={'number'} titleName={'Duração'} value={duration} disabled={!isConcluded} placeholder={'40:00'} required={true} />
                 <Input className="disabled:text-transparent" onChange={(e) => {
                     setCalories(e.target.value)
-                }} type={'number'} titleName={'Calorias'} value={calories} disabled={!isConcluded && true} placeholder={'387'} required={true} />
+                }} type={'number'} titleName={'Calorias'} value={calories} disabled={!isConcluded} placeholder={'387'} required={true} />
                 <Input className="disabled:text-transparent" onChange={(e) => {
                     setObservation(e.target.value)
                 }} type={'text'} value={observation} titleName={'Observações da corrida'} placeholder={'(opcional)'} />

@@ -8,7 +8,7 @@ const LatestActivities = () => {
         <div className='flex flex-col gap-4 w-full max-w-sm bg-white py-5 px-5 rounded-xl shadow-md'>
             <h1 className='text-2xl font-semibold text-[var(--color-3)]'>Últimas atividades</h1>
             {
-                data.length ? (
+                data?.length ? (
                     <ul>
                         {
                             data.map((doc, index) => (

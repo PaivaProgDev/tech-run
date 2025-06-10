@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../services/firebase'
 import { useAuth } from '../contexts/AuthContext'
-import Loading from '../components/Global/Loading'
 
 const Login = () => {
     const { setIsAuthenticated, setUserCredential } = useAuth()

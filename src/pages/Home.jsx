@@ -3,6 +3,7 @@ import Button from "../components/Global/Button"
 import { Link } from "react-router-dom"
 
 const Home = () => {
+
     return (
         <>
             <section className="flex flex-col min-h-screen justify-center items-center gap-4 py-6 px-5 bg-[var(--color-bg)]">
