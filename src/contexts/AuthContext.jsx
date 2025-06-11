@@ -1,7 +1,7 @@
 import { createContext, use, useContext, useEffect, useState } from "react";
 import { auth } from "../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../services/firebase";
 
 const AuthContext = createContext()
@@ -15,6 +15,16 @@ export const AuthProvider = ({ children }) => {
     const [distance, setDistance] = useState([])
     const [isConcluded, setIsConcluded] = useState([])
     const [data, setData] = useState()
+
+    const user = auth.currentUser
+
+    const handleDeleteUserInfo = async (id) => {
+        const docRef = doc(db, "users", user.uid, "races", id)
+
+        await deleteDoc(docRef)
+
+        handleGetDataUser(user)
+    }
 
     const handleGetDataUser = async (user) => {
         const racesData = []
@@ -70,6 +80,7 @@ export const AuthProvider = ({ children }) => {
         distance,
         isConcluded,
         handleGetDataUser,
+        handleDeleteUserInfo,
         data
     }
 
