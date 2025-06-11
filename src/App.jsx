@@ -14,6 +14,7 @@ const Register = lazy(() => import('./pages/Register'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const Historic = lazy(() => import('./pages/Historic'))
 const Home = lazy(() => import('./pages/Home'))
+const Medals = lazy(() => import('./pages/Medals'))
 
 const App = () => {
     const { isAuthenticated } = useAuth()
@@ -72,6 +73,13 @@ const App = () => {
                     <Suspense fallback={<Loading />}>
                         <PrivateRoute>
                             <Historic />
+                        </PrivateRoute>
+                    </Suspense>
+                } />
+                <Route path='/medals' element={
+                    <Suspense fallback={<Loading />}>
+                        <PrivateRoute>
+                            <Medals />
                         </PrivateRoute>
                     </Suspense>
                 } />

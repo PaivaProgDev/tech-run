@@ -121,7 +121,7 @@ const Historic = () => {
                                                 info.data().isConcluded ? (
                                                     <div className={` p-4 border-2 border-gray-200 rounded-md bg-white w-full flex flex-col max-w-[22rem] shadow-md`}>
                                                         <div className="flex justify-between">
-                                                            {info.data().isConcluded ? <div className="h-2.5 w-2.5 bg-green-500 rounded-full"></div> : <div className="h-2.5 w-2.5 bg-red-500 rounded-full"></div>}
+                                                            {info.data().isConcluded && <div className="h-2.5 w-2.5 bg-green-500 rounded-full"></div>}
                                                             <Trash onClick={() => handleDeleteUserInfo(info.id)} className="size-5 text-[var(--color-1)]" />
                                                         </div>
                                                         <div className="text-center">
@@ -159,7 +159,7 @@ const Historic = () => {
                                                 ) : (
                                                     <div className={`p-4 rounded-md border-2 border-gray-200 bg-white w-full flex flex-col max-w-[22rem] shadow-md`}>
                                                         <div className="flex justify-between">
-                                                            {info.data().isConcluded ? <div className="h-2.5 w-2.5 bg-green-500 rounded-full"></div> : <div className="h-2.5 w-2.5 bg-red-500 rounded-full"></div>}
+                                                            {!info.data().isConcluded && <div className="h-2.5 w-2.5 bg-red-500 rounded-full"></div>}
                                                             <Trash onClick={() => handleDeleteUserInfo(info.id)} className="size-5 text-[var(--color-1)]" />
                                                         </div>
                                                         <div className="w-full items-center justify-center mt-3">

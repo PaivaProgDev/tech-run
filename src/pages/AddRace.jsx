@@ -38,12 +38,12 @@ const AddRace = () => {
         }
     }
     return (
-        <main className='pt-24 px-4 pb-22 bg-[var(--color-bg)] min-h-screen'>
-            <div className='flex items-center gap-4'>
+        <main className='pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen'>
+            <div className='flex items-center gap-2'>
                 <Activity className='text-[var(--color-1)]' />
                 <h1 className='text-2xl font-semibold text-[var(--color-3)]'>Adicionar Corrida</h1>
             </div>
-            <p className='text-[var(--color-2)] mb-8 mt-3'>Preencha o formulário abaixo para registrar uma nova corrida.</p>
+            <p className='text-[var(--color-2)] text-[14px] mb-10'>Preencha o formulário abaixo para registrar uma nova corrida.</p>
             <form onSubmit={handleAddRace} className='shadow-lg w-full py-5 px-6 rounded-xl border-2 border-gray-200 bg-white flex flex-col gap-3 mb-4'>
                 <label className='flex gap-2'>
                     <input type="checkbox" onChange={(e) => {

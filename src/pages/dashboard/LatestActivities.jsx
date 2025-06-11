@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
 
 const LatestActivities = () => {
@@ -9,26 +10,28 @@ const LatestActivities = () => {
             <h1 className='text-2xl font-semibold text-[var(--color-3)]'>Últimas atividades</h1>
             {
                 data?.length ? (
-                    <ul>
+                    <ul className="flex flex-col gap-3">
                         {
                             data.map((doc, index) => (
                                 <li key={doc.id} className="text-[14px]">
                                     {isConcluded[index] ? (
-                                        <div>
-                                            <span className="text-green-400 text-[16px]">Treino efetuado</span>
+                                        <div className="flex items-center gap-4">
+                                            <div className="h-2.5 w-2.5 bg-green-500 rounded-full"></div>
                                             <pre className="text-[13px] text-[var(--color-2)]">{doc.data().date}</pre>
                                         </div>
                                     ) : (
-                                        <div>
-                                            <span className="text-red-400 text-[16px]">Treino não efetuado</span>
+                                        <div className="flex items-center gap-4">
+                                            <div className="h-2.5 w-2.5 bg-red-500 rounded-full"></div>
                                             <pre className="text-[13px] text-[var(--color-2)]">{doc.data().date}</pre>
                                         </div>
+                                        // {info.data().isConcluded ? <div className="h-2.5 w-2.5 bg-green-500 rounded-full"></div> : <div className="h-2.5 w-2.5 bg-red-500 rounded-full"></div>}
+
                                     )}
                                 </li>
                             ))}
                     </ul>
                 ) : (
-                    <p className="text-[12px] text-[var(--color-3)]">Você não adicionou nenhuma corrida, clique no botão <span className="text-[var(--color-1)]">"Adicionar corrida"</span></p>
+                    <p className="text-[12px] text-[var(--color-3)]">Você não adicionou nenhuma corrida, clique no botão <Link to={'/add-race'} className="text-[var(--color-1)]">"Adicionar corrida"</Link></p>
                 )
             }
         </div >

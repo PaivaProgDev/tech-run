@@ -1,16 +1,19 @@
 import Cards from './Cards'
 import Button from '../../components/Global/Button'
-import { CirclePlus } from 'lucide-react'
+import { CirclePlus, Eye } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import LatestActivities from './LatestActivities'
 
 const Dashboard = () => {
     return (
-        <main className='pt-20 px-4 pb-22 bg-[var(--color-bg)] min-h-screen'>
-            <h1 className='text-3xl font-semibold text-[var(--color-3)]'>Visão Geral</h1>
-            <p className='text-[var(--color-2)] mb-8'>Veja o estado de suas atividades</p>
+        <main className='pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen'>
+            <div className="flex items-center gap-2 mb-3">
+                <Eye className="text-[var(--color-1)] size-7" />
+                <h1 className='text-2xl font-semibold text-[var(--color-3)]'>Visão Geral</h1>
+            </div>
+            <p className='text-[var(--color-2)] text-[14px]'>Veja o estado de suas atividades</p>
             <Link to={'/add-race'}>
-                <Button className={"flex items-center gap-3 text-[.88rem] justify-center mb-4 w-full"}>
+                <Button className={"flex items-center mt-10 gap-3 text-[.88rem] justify-center mb-4 w-full"}>
                     <CirclePlus />
                     Adicionar corrida
                 </Button>

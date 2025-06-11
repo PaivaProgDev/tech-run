@@ -1,4 +1,4 @@
-import { HistoryIcon, LayoutDashboardIcon, Plus, PlusIcon, SettingsIcon, UserIcon } from 'lucide-react'
+import { HistoryIcon, LayoutDashboardIcon, Medal, Plus, PlusIcon, SettingsIcon, UserIcon } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Button from './Global/Button'
@@ -32,11 +32,11 @@ const Aside = () => {
                 <NavLink to={'/add-race'} className={'h-fit! px-2! py-2! -translate-y-1 bg-[var(--color-1)] rounded-md text-white'}>
                     <Plus className="size-5" />
                 </NavLink>
-                <NavLink to={'/option'} className={'flex flex-col items-center gap-1.5'}>
+                <NavLink to={'/medals'} className={'flex flex-col items-center gap-1.5'}>
                     {({ isActive }) => (
                         <>
-                            <SettingsIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"} size-5`} />
-                            <span className={`text-[13px] opacity-0 font-medium  transition-opacity ${isActive && "opacity-100 text-[var(--color-1)]"}`}>Opções</span>
+                            <Medal className={`${isActive && "opacity-100 text-[var(--color-1)]"} size-5`} />
+                            <span className={`text-[13px] opacity-0 font-medium  transition-opacity ${isActive && "opacity-100 text-[var(--color-1)]"}`}>Medalhas</span>
                         </>
                     )}
                 </NavLink>
