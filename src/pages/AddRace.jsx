@@ -15,7 +15,6 @@ const AddRace = () => {
     const [distance, setDistance] = useState('')
     const [duration, setDuration] = useState('')
     const [calories, setCalories] = useState('')
-    const [observation, setObservation] = useState('')
     const [isConcluded, setIsConcluded] = useState(true)
 
     const handleAddRace = async (e) => {
@@ -24,10 +23,9 @@ const AddRace = () => {
             await addDoc(collection(db, "users", userCredential.uid, "races"), {
                 date: date,
                 typeRace: typeRace,
-                period: period || "",
-                duration: duration || '',
-                observation: observation || "",
-                distance: Number(distance || null),
+                period: period || '',
+                duration: parseFloat(duration) || '',
+                distance: parseFloat(distance) || '',
                 calories: Number(calories || null),
                 isConcluded: Boolean(isConcluded),
             })
@@ -37,6 +35,47 @@ const AddRace = () => {
             console.log(error.code)
         }
     }
+
+    const handleDurationChange = (e) => {
+        let value = e.target.value.replace(/\D/g, ''); // remove tudo que não for número
+
+        // limita a 6 dígitos (9h59m59s)
+        value = value.slice(0, 6);
+
+        // formata para HH:MM:SS
+        if (value.length <= 2) {
+            // só segundos
+            value = value;
+        } else if (value.length <= 4) {
+            // MM:SS
+            value = value.slice(0, value.length - 2) + ':' + value.slice(-2);
+        } else {
+            // HH:MM:SS
+            value =
+                value.slice(0, value.length - 4) + ':' +
+                value.slice(-4, -2) + ':' +
+                value.slice(-2);
+        }
+
+        setDuration(value);
+    };
+
+    const handleDistanceChange = (e) => {
+        let value = e.target.value.replace(/\D/g, '')
+
+        value = value.slice(0, 5)
+
+        if (value.length <= 2) {
+            value = value.padStart(1)
+        }
+        else {
+            value = value.slice(0, value.length - 2) + '.' + value.slice(-2);
+        }
+
+        setDistance(value)
+    }
+
+
     return (
         <main className='pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen'>
             <div className='flex items-center gap-2'>
@@ -84,19 +123,12 @@ const AddRace = () => {
                         <option value="Noite">Noite</option>
                     </select>
                 </div>
-                <Input className="disabled:text-transparent" onChange={(e) => {
-                    setDistance(e.target.value)
-                }} type={'number'} titleName={'Distância (km)'} value={distance} disabled={!isConcluded} placeholder={'5.0'} required={true} />
-                <Input className="disabled:text-transparent" onChange={(e) => {
-                    setDuration(e.target.value)
-                }
-                } type={'number'} titleName={'Duração'} value={duration} disabled={!isConcluded} placeholder={'40:00'} required={true} />
+                <Input className="disabled:text-transparent" onChange={handleDistanceChange} type={'tel'} titleName={'Distância (km)'} value={distance} disabled={!isConcluded} placeholder={'5.0'} required={true} />
+                <Input className="disabled:text-transparent" onChange={handleDurationChange}
+                    type={'tel'} titleName={'Duração'} value={duration} disabled={!isConcluded} placeholder={'40:00'} required={true} />
                 <Input className="disabled:text-transparent" onChange={(e) => {
                     setCalories(e.target.value)
                 }} type={'number'} titleName={'Calorias'} value={calories} disabled={!isConcluded} placeholder={'387'} required={true} />
-                <Input className="disabled:text-transparent" onChange={(e) => {
-                    setObservation(e.target.value)
-                }} type={'text'} value={observation} titleName={'Observações da corrida'} placeholder={'(opcional)'} />
                 <Button className={"flex items-center justify-center gap-2 text-[13px] mt-3"}>
                     <SaveIcon className='size-4.5' />
                     Salvar corrida

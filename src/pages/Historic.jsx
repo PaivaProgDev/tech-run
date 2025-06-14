@@ -99,8 +99,8 @@ const Historic = () => {
                                                 <td className="border px-3 py-2 font-medium border-gray-200 ">
                                                     <span className={verifyStyleTable(info.data().typeRace)}>{info.data().typeRace}</span>
                                                 </td>
-                                                <td className="border px-3 py-2 text-[13px] border-gray-200">
-
+                                                <td className="border px-3 py-2 text-[13px]  border-gray-200">
+                                                    <Trash onClick={() => handleDeleteUserInfo(info.id)} className="size-5 cursor-pointer text-[var(--color-1)] justify-self-end" />
                                                 </td>
                                             </tr>
                                         ))
