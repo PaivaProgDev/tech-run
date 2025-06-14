@@ -111,7 +111,7 @@ const Profile = () => {
 
           <div className='flex mt-8 flex-col gap-4 w-full max-w-sm bg-white py-4 px-5 rounded-xl shadow-md'>
             <Link to={'/dashboard'} className="flex items-center gap-3 border-b border-b-gray-200 pb-2">
-              <div className="border border-[var(--color-1)] w-fit p-2 rounded-full h-fit">
+              <div className=" w-fit p-2 rounded-full h-fit">
                 <LayoutDashboard className="size-5 text-[var(--color-1)]" />
               </div>
               <div className="leading-4">
@@ -123,7 +123,7 @@ const Profile = () => {
               </div>
             </Link>
             <Link to={'/medals'} className="flex items-center gap-3 border-b border-b-gray-200 pb-2">
-              <div className="border border-[var(--color-1)] w-fit p-2 rounded-full h-fit">
+              <div className=" w-fit p-2 rounded-full h-fit">
                 <MedalIcon className="size-5 text-[var(--color-1)]" />
               </div>
               <div className="leading-4">
@@ -135,7 +135,7 @@ const Profile = () => {
               </div>
             </Link>
             <div className="flex items-center gap-3 border-b-gray-200">
-              <div className="border border-[var(--color-1)] w-fit p-2 rounded-full h-fit">
+              <div className="w-fit p-2 rounded-full h-fit">
                 <Settings2Icon className="size-5 text-[var(--color-1)]" />
               </div>
               <div className="leading-4">
