@@ -1,6 +1,6 @@
-import { ArrowLeftIcon, LogOutIcon, UserIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon, ChevronRightIcon, LayoutDashboard, LogOutIcon, MedalIcon, Settings2Icon, UserIcon } from "lucide-react";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { signOut, updateProfile } from "firebase/auth";
 import { auth } from "../services/firebase";
 import { useAuth } from "../contexts/AuthContext";
@@ -9,8 +9,12 @@ import { FileUploaderRegular } from "@uploadcare/react-uploader";
 import "@uploadcare/react-uploader/core.css";
 
 const Profile = () => {
+  const { setIsAuthenticated, setUserCredential, userCredential, races } = useAuth();
+  const monthNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const month = new Date().getMonth()
+  const day = new Date().getDate()
+  const year = new Date().getFullYear().toString().split(0, 2).slice(1, 2)
   const navigate = useNavigate();
-  const { setIsAuthenticated, setUserCredential, userCredential } = useAuth();
 
   const handleBackPage = () => {
     navigate(-1);
@@ -37,66 +41,115 @@ const Profile = () => {
   };
 
   return (
-    <section className="flex flex-col items-center min-h-screen py-22 px-4 bg-[var(--color-bg)]">
-      <div className="flex w-full items-center justify-between ">
-        <div
-          onClick={handleBackPage}
-          className="cursor-pointer bg-gray-200 w-fit p-2 rounded-full"
-        >
-          <ArrowLeftIcon className="text-[var(--color-2)] size-4.5" />
-        </div>
-        <div
-          onClick={handleLogOut}
-          className="cursor-pointer bg-gray-200 w-fit p-2 rounded-full"
-        >
-          <LogOutIcon className="size-4.5 text-[var(--color-2)]" />
-        </div>
-      </div>
+    <>
+      <section className="min-h-screen bg-[var(--color-bg)] relative">
+        <div className="bg-[var(--color-1)] absolute w-full h-60 -z-0 rounded-b-3xl"></div>
+        <div className="py-22 px-4 flex flex-col items-center">
+          <div className="flex w-full items-center justify-between z-10">
+            <div
+              onClick={handleBackPage}
+              className="cursor-pointer bg-gray-200 w-fit p-2 rounded-full"
+            >
+              <ArrowLeftIcon className="text-[var(--color-2)] size-4.5" />
+            </div>
+            <div
+              onClick={handleLogOut}
+              className="cursor-pointer bg-gray-200 w-fit p-2 rounded-full"
+            >
+              <LogOutIcon className="size-4.5 text-[var(--color-2)]" />
+            </div>
+          </div>
 
-      <div className="mt-10 flex flex-col items-center">
-        {userCredential.photoURL !== null ? (
-          <div className=" relative">
-            <img
-              className="rounded-full h-40 w-40 object-cover"
-              src={userCredential.photoURL}
-              alt="Foto de perfil do usuário"
-            />
-            <FileUploaderRegular
-              sourceList="local"
-              cameraModes="photo"
-              pubkey="56aedfc665a0dce4a57b"
-              className="absolute right-0 bottom-0"
-              onCommonUploadSuccess={(e) =>
-                e.successEntries.map((entry) => {
-                  handleUpdatePhoto(entry.cdnUrl);
-                })
-              }
-            />
+          <div className="mt-10 flex flex-col items-center">
+            {userCredential.photoURL !== null ? (
+              <div className=" relative">
+                <img
+                  className="rounded-full h-40 w-40 object-cover border-4 border-white"
+                  src={userCredential.photoURL}
+                  alt="Foto de perfil do usuário"
+                />
+                <FileUploaderRegular
+                  sourceList="local"
+                  cameraModes="photo"
+                  pubkey="56aedfc665a0dce4a57b"
+                  className="absolute right-0 bottom-0"
+                  onCommonUploadSuccess={(e) =>
+                    e.successEntries.map((entry) => {
+                      handleUpdatePhoto(entry.cdnUrl);
+                    })
+                  }
+                />
+              </div>
+            ) : (
+              <div className="bg-slate-300 p-6 rounded-full relative">
+                <UserIcon className="size-12 text-[var(--color-2)]" />
+                <FileUploaderRegular
+                  sourceList="local"
+                  cameraModes="photo"
+                  pubkey="56aedfc665a0dce4a57b"
+                  className="absolute right-0 bottom-0"
+                  onCommonUploadSuccess={(e) =>
+                    e.successEntries.map((entry) => {
+                      handleUpdatePhoto(entry.cdnUrl);
+                    })
+                  }
+                />
+              </div>
+            )}
+            <h1 className="text-2xl font-semibold text-[var(--color-3)] mt-5 mb-1">
+              <pre>{userCredential.displayName}</pre>
+            </h1>
+            <pre className="text-gray-400 text-center text-[14px]">
+              {userCredential.email}
+            </pre>
           </div>
-        ) : (
-          <div className="bg-slate-300 p-6 rounded-full relative">
-            <UserIcon className="size-12 text-[var(--color-2)]" />
-            <FileUploaderRegular
-              sourceList="local"
-              cameraModes="photo"
-              pubkey="56aedfc665a0dce4a57b"
-              className="absolute right-0 bottom-0"
-              onCommonUploadSuccess={(e) =>
-                e.successEntries.map((entry) => {
-                  handleUpdatePhoto(entry.cdnUrl);
-                })
-              }
-            />
+          <div className="flex gap-3 mt-6">
+            <span className=" bg-gray-700 p-1 h-14 w-14 rounded-lg flex items-center justify-center text-2xl font-semibold text-white">{day}</span>
+            <span className=" bg-gray-800 p-1 h-14 w-14 rounded-lg flex items-center justify-center text-2xl font-semibold text-white">{monthNumber[month]}</span>
+            <span className=" bg-gray-700 p-1 h-14 w-14 rounded-lg flex items-center justify-center text-2xl font-semibold text-white">{year}</span>
           </div>
-        )}
-        <h1 className="text-2xl font-semibold text-[var(--color-3)] mt-5 mb-1">
-          <pre>{userCredential.displayName}</pre>
-        </h1>
-        <pre className="text-gray-400 text-center text-[14px]">
-          {userCredential.email}
-        </pre>
-      </div>
-    </section>
+
+          <div className='flex mt-8 flex-col gap-4 w-full max-w-sm bg-white py-4 px-5 rounded-xl shadow-md'>
+            <Link to={'/dashboard'} className="flex items-center gap-3 border-b border-b-gray-200 pb-2">
+              <div className="border border-[var(--color-1)] w-fit p-2 rounded-full h-fit">
+                <LayoutDashboard className="size-5 text-[var(--color-1)]" />
+              </div>
+              <div className="leading-4">
+                <span className="text-[15px] text-[var(--color-3)] font-semibold">Dashboard</span>
+                <pre className="text-[13px] text-[var(--color-2)]">{races.length} corridas</pre>
+              </div>
+              <div className="w-full flex justify-end">
+                <ChevronRightIcon className="text-[var(--color-2)] size-5" />
+              </div>
+            </Link>
+            <Link to={'/medals'} className="flex items-center gap-3 border-b border-b-gray-200 pb-2">
+              <div className="border border-[var(--color-1)] w-fit p-2 rounded-full h-fit">
+                <MedalIcon className="size-5 text-[var(--color-1)]" />
+              </div>
+              <div className="leading-4">
+                <span className="text-[15px] text-[var(--color-3)] font-semibold">Medalhas</span>
+                <pre className="text-[13px] text-[var(--color-2)]">Em breve...</pre>
+              </div>
+              <div className="w-full flex justify-end">
+                <ChevronRightIcon className="text-[var(--color-2)] size-5" />
+              </div>
+            </Link>
+            <div className="flex items-center gap-3 border-b-gray-200">
+              <div className="border border-[var(--color-1)] w-fit p-2 rounded-full h-fit">
+                <Settings2Icon className="size-5 text-[var(--color-1)]" />
+              </div>
+              <div className="leading-4">
+                <span className="text-[15px] text-[var(--color-3)] font-semibold">Configurações</span>
+                <pre className="text-[13px] text-[var(--color-2)]">Temas e privacidade</pre>
+              </div>
+              <div className="w-full flex justify-end">
+                <ChevronRightIcon className="text-[var(--color-2)] size-5" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

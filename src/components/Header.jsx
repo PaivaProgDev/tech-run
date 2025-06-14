@@ -8,7 +8,7 @@ const Header = () => {
   const { userCredential } = useAuth();
 
   return (
-    <header className="flex items-center justify-between z-10 bg-white py-3 px-4 border-b fixed top-0 w-full border-gray-300">
+    <header className="flex items-center justify-between z-20 bg-white py-3 px-4 border-b fixed top-0 w-full border-gray-300">
       <div className="flex items-center gap-3">
         {userCredential.photoURL !== null ? (
           <div className="rounded-full">
