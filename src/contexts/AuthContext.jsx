@@ -4,87 +4,96 @@ import { onAuthStateChanged } from "firebase/auth";
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../services/firebase";
 
-const AuthContext = createContext()
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(null)
-    const [userCredential, setUserCredential] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [races, setRaces] = useState([])
-    const [calories, setCalories] = useState([])
-    const [distance, setDistance] = useState([])
-    const [isConcluded, setIsConcluded] = useState([])
-    const [data, setData] = useState()
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [userCredential, setUserCredential] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [races, setRaces] = useState([]);
+  const [calories, setCalories] = useState([]);
+  const [distance, setDistance] = useState([]);
+  const [isConcluded, setIsConcluded] = useState([]);
+  const [data, setData] = useState();
+  const [configModal, setConfigModal] = useState(false);
 
-    const user = auth.currentUser
+  const handleOpenModal = () => {
+    setConfigModal(!configModal);
+  };
 
-    const handleDeleteUserInfo = async (id) => {
-        const docRef = doc(db, "users", user.uid, "races", id)
+  const user = auth.currentUser;
 
-        await deleteDoc(docRef)
+  const handleDeleteUserInfo = async (id) => {
+    const docRef = doc(db, "users", user.uid, "races", id);
 
-        handleGetDataUser(user)
-    }
+    await deleteDoc(docRef);
 
-    const handleGetDataUser = async (user) => {
-        const racesData = []
-        const caloriesData = []
-        const distanceData = []
-        const isConcludedData = []
-        const idData = []
+    handleGetDataUser(user);
+  };
 
-        const queryDoc = await getDocs(collection(db, "users", user.uid, "races"));
+  const handleGetDataUser = async (user) => {
+    const racesData = [];
+    const caloriesData = [];
+    const distanceData = [];
+    const isConcludedData = [];
+    const idData = [];
 
-        queryDoc.forEach((doc) => {
-            idData.push(doc);
-            const data = doc.data()
-            racesData.push(data)
-            caloriesData.push(data.calories)
-            distanceData.push(data.distance)
-            isConcludedData.push(data.isConcluded)
-        });
+    const queryDoc = await getDocs(collection(db, "users", user.uid, "races"));
 
-        setRaces(racesData)
-        setCalories(caloriesData)
-        setDistance(distanceData)
-        setIsConcluded(isConcludedData)
-        setData(idData)
-    }
+    queryDoc.forEach((doc) => {
+      idData.push(doc);
+      const data = doc.data();
+      racesData.push(data);
+      caloriesData.push(data.calories);
+      distanceData.push(data.distance);
+      isConcludedData.push(data.isConcluded);
+    });
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                setUserCredential(user)
-                setIsAuthenticated(true)
-                handleGetDataUser(user)
-            } else {
-                setUserCredential(null)
-                setIsAuthenticated(false)
-            }
-            setLoading(false)
-        })
+    setRaces(racesData);
+    setCalories(caloriesData);
+    setDistance(distanceData);
+    setIsConcluded(isConcludedData);
+    setData(idData);
 
-        return () => unsubscribe();
-    }, [])
+    setLoading(false);
+  };
 
-    const value = {
-        isAuthenticated,
-        setIsAuthenticated,
-        setUserCredential,
-        userCredential,
-        loading,
-        setLoading,
-        races,
-        setRaces,
-        calories,
-        distance,
-        isConcluded,
-        handleGetDataUser,
-        handleDeleteUserInfo,
-        data
-    }
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUserCredential(user);
+        setIsAuthenticated(true);
+        handleGetDataUser(user);
+      } else {
+        setUserCredential(null);
+        setIsAuthenticated(false);
+      }
+      setLoading(false);
+    });
 
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-}
+    return () => unsubscribe();
+  }, []);
 
-export const useAuth = () => useContext(AuthContext)
+  const value = {
+    isAuthenticated,
+    setIsAuthenticated,
+    setUserCredential,
+    userCredential,
+    loading,
+    setLoading,
+    races,
+    setRaces,
+    calories,
+    distance,
+    isConcluded,
+    handleGetDataUser,
+    handleDeleteUserInfo,
+    data,
+    handleOpenModal,
+    configModal,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+export const useAuth = () => useContext(AuthContext);
