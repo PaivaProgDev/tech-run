@@ -2,29 +2,31 @@ import { HistoryIcon, LayoutDashboardIcon, Medal, Plus, PlusIcon, SettingsIcon, 
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Button from './Global/Button'
+import { usePreference } from '../contexts/PreferenceContext'
 
 const Aside = () => {
     const [screenWidth, setScreenWidth] = useState(innerWidth)
+    const { theme } = usePreference()
 
     useEffect(() => {
         return () => window.addEventListener('resize', setScreenWidth(innerHeight))
     })
 
     return (
-        <aside className='fixed bottom-0 z-10 border-t border-gray-300 flex w-full ntext-[var(--color-3)] bg-white px-5 pt-4 pb-3'>
-            <nav className='flex justify-between w-full relative '>
+        <aside className={`${theme === 'dark' && '!bg-[#1f1f1f] border-t-0'} fixed bottom-0 z-10 border-t border-gray-300 flex w-full ntext-[var(--color-3)] bg-white px-5 pt-4 pb-3`}>
+            <nav nav className='flex justify-between w-full relative ' >
                 <NavLink to={'/dashboard'} className={'flex flex-col items-center gap-1.5 '}>
                     {({ isActive }) => (
                         <>
-                            <LayoutDashboardIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"} size-5`} />
-                            <span className={`text-[13px] opacity-0 font-medium  transition-opacity ${isActive && "opacity-100 text-[var(--color-1)]"}`}>Painel</span>
+                            <LayoutDashboardIcon className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${theme === 'dark' && 'text-white'}  size-5`} />
+                            <span className={` text-[13px] opacity-0 text-[var(--color-1)] font-medium  transition-opacity ${isActive && "opacity-100 text-[var(--color-1)]"} `}>Painel</span>
                         </>
                     )}
                 </NavLink>
                 <NavLink to={'/historic'} className={'flex flex-col items-center gap-1.5'}>
                     {({ isActive }) => (
                         <>
-                            <HistoryIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"} size-5`} />
+                            <HistoryIcon className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${theme === 'dark' && 'text-white'} size-5`} />
                             <span className={`text-[13px] opacity-0 font-medium transition-opacity ${isActive && "opacity-100 text-[var(--color-1)]"}`}>Histórico</span>
                         </>
                     )}
@@ -35,7 +37,7 @@ const Aside = () => {
                 <NavLink to={'/medals'} className={'flex flex-col items-center gap-1.5'}>
                     {({ isActive }) => (
                         <>
-                            <Medal className={`${isActive && "opacity-100 text-[var(--color-1)]"} size-5`} />
+                            <Medal className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${theme === 'dark' && 'text-white'} size-5`} />
                             <span className={`text-[13px] opacity-0 font-medium  transition-opacity ${isActive && "opacity-100 text-[var(--color-1)]"}`}>Medalhas</span>
                         </>
                     )}
@@ -43,12 +45,12 @@ const Aside = () => {
                 <NavLink to={'/profile'} className={'flex flex-col items-center gap-1.5'}>
                     {({ isActive }) => (
                         <>
-                            <UserIcon className={`${isActive && "opacity-100 text-[var(--color-1)]"} size-5`} />
+                            <UserIcon className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${theme === 'dark' && 'text-white'} size-5`} />
                             <span className={`text-[13px] opacity-0 font-medium  transition-opacity ${isActive && "opacity-100 text-[var(--color-1)]"}`}>Perfil</span>
                         </>
                     )}
                 </NavLink>
-            </nav>
+            </nav >
         </aside >
     )
 }

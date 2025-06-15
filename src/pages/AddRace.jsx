@@ -37,20 +37,19 @@ const AddRace = () => {
   };
 
   const handleDurationChange = (e) => {
-    let value = e.target.value.replace(/\D/g, ""); // remove tudo que não for número
+    // remove tudo que não for número
+    let value = e.target.value.replace(/\D/g, "");
 
-    // limita a 6 dígitos (9h59m59s)
     value = value.slice(0, 6);
 
-    // formata para HH:MM:SS
     if (value.length <= 2) {
-      // só segundos
+
       value = value;
     } else if (value.length <= 4) {
-      // MM:SS
+
       value = value.slice(0, value.length - 2) + ":" + value.slice(-2);
     } else {
-      // HH:MM:SS
+
       value =
         value.slice(0, value.length - 4) +
         ":" +

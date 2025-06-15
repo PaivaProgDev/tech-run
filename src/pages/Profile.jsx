@@ -16,6 +16,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { FileUploaderRegular } from "@uploadcare/react-uploader";
 import "@uploadcare/react-uploader/core.css";
 import ModalConfig from "../components/ModalConfig";
+import { usePreference } from "../contexts/PreferenceContext";
 
 const Profile = () => {
   const {
@@ -26,6 +27,7 @@ const Profile = () => {
     handleOpenModal,
     configModal,
   } = useAuth();
+  const { theme } = usePreference()
   const monthNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const month = new Date().getMonth();
   const day = new Date().getDate();
@@ -59,7 +61,7 @@ const Profile = () => {
   return (
     <>
       {configModal && <ModalConfig />}
-      <section className="min-h-screen bg-[var(--color-bg)] relative bg-linear-to-t from-slate-200 to-[var(--color-bg)]">
+      <section className={`${theme === 'dark' ? "bg-slate-900" : "bg-linear-to-t from-slate-200 to-[var(--color-bg)]"} transition-all min-h-screen relative`}>
         <div className="py-22 px-4 flex flex-col items-center relative">
           <div className="flex w-full items-center justify-between z-10">
             <div
@@ -172,7 +174,7 @@ const Profile = () => {
             </Link>
             <div
               onClick={handleOpenModal}
-              className="flex items-center gap-3 border-b-gray-200"
+              className="flex items-center gap-3 cursor-pointer border-b-gray-200"
             >
               <div className="w-fit p-2 rounded-full h-fit">
                 <Settings2Icon className="size-5 text-[var(--color-1)]" />
