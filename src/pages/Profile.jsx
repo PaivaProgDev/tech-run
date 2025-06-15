@@ -64,15 +64,15 @@ const Profile = () => {
           <div className="flex w-full items-center justify-between z-10">
             <div
               onClick={handleBackPage}
-              className="cursor-pointer bg-gray-200 w-fit p-2 rounded-full"
+              className="cursor-pointer bg-gray-300 w-fit p-2 rounded-full"
             >
-              <ArrowLeftIcon className="text-[var(--color-2)] size-4.5" />
+              <ArrowLeftIcon className="text-[var(--color-3)] size-4.5" />
             </div>
             <div
               onClick={handleLogOut}
-              className="cursor-pointer bg-gray-200 w-fit p-2 rounded-full"
+              className="cursor-pointer bg-gray-300 w-fit p-2 rounded-full"
             >
-              <LogOutIcon className="size-4.5 text-[var(--color-2)]" />
+              <LogOutIcon className="size-4.5 text-[var(--color-3)]" />
             </div>
           </div>
 
