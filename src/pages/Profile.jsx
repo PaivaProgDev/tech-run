@@ -61,7 +61,7 @@ const Profile = () => {
   return (
     <>
       {configModal && <ModalConfig />}
-      <section className={`${theme === 'dark' ? "bg-slate-900" : "bg-linear-to-t from-slate-200 to-[var(--color-bg)]"} transition-all min-h-screen relative`}>
+      <section className={`${theme === 'dark' ? "bg-[#1f1f1f]" : "bg-linear-to-t from-slate-200 to-[var(--color-bg)]"} transition-all min-h-screen relative`}>
         <div className="py-22 px-4 flex flex-col items-center relative">
           <div className="flex w-full items-center justify-between z-10">
             <div
@@ -133,7 +133,7 @@ const Profile = () => {
             </span>
           </div>
 
-          <div className="flex mt-8 flex-col gap-4 w-full max-w-sm bg-white py-4 px-5 rounded-xl shadow-md">
+          <div className={`${theme === 'dark' && '!bg-neutral-800'} flex mt-8 flex-col gap-4 w-full max-w-sm bg-white py-4 px-5 rounded-xl shadow-md`}>
             <Link
               to={"/dashboard"}
               className="flex items-center gap-3 border-b border-b-gray-200 pb-2"
@@ -141,8 +141,8 @@ const Profile = () => {
               <div className=" w-fit p-2 rounded-full h-fit">
                 <LayoutDashboard className="size-5 text-[var(--color-1)]" />
               </div>
-              <div className="leading-4">
-                <span className="text-[15px] text-[var(--color-3)] font-semibold">
+              <div className="leading-5">
+                <span className={`${theme === 'dark' && 'text-zinc-300'} text-[15px] text-[var(--color-3)] font-semibold`}>
                   Dashboard
                 </span>
                 <pre className="text-[13px] text-[var(--color-2)]">
@@ -160,8 +160,8 @@ const Profile = () => {
               <div className=" w-fit p-2 rounded-full h-fit">
                 <MedalIcon className="size-5 text-[var(--color-1)]" />
               </div>
-              <div className="leading-4">
-                <span className="text-[15px] text-[var(--color-3)] font-semibold">
+              <div className="leading-5">
+                <span className={`${theme === 'dark' && 'text-zinc-300'} text-[15px] text-[var(--color-3)] font-semibold`}>
                   Medalhas
                 </span>
                 <pre className="text-[13px] text-[var(--color-2)]">
@@ -179,8 +179,8 @@ const Profile = () => {
               <div className="w-fit p-2 rounded-full h-fit">
                 <Settings2Icon className="size-5 text-[var(--color-1)]" />
               </div>
-              <div className="leading-4">
-                <span className="text-[15px] text-[var(--color-3)] font-semibold">
+              <div className="leading-5">
+                <span className={`${theme === 'dark' && 'text-zinc-300'} text-[15px] text-[var(--color-3)] font-semibold`}>
                   Configurações
                 </span>
                 <pre className="text-[13px] text-[var(--color-2)]">

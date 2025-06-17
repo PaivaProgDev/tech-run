@@ -8,7 +8,7 @@ const LatestActivities = () => {
   const { theme } = usePreference()
 
   return (
-    <div className={`${theme === 'dark' && '!bg-gray-900'} flex flex-col gap-4 w-full min-h-full max-w-sm bg-white py-5 px-5 rounded-xl shadow-md`}>
+    <div className={`${theme === 'dark' && '!bg-neutral-800'} flex flex-col gap-4 w-full min-h-full max-w-sm bg-white py-5 px-5 rounded-xl shadow-md`}>
       <h1 className={`${theme === 'dark' && '!text-gray-400'} text-2xl font-semibold text-[var(--color-3)]`}>
         Últimas atividades
       </h1>

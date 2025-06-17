@@ -4,7 +4,7 @@ import { usePreference } from "../contexts/PreferenceContext";
 
 const ModalConfig = () => {
   const { handleOpenModal, userCredential } = useAuth();
-  const { setDark, setLight, getPreferredThemeDb } = usePreference()
+  const { setDark, setLight, theme } = usePreference()
 
   return (
     <>
@@ -16,13 +16,13 @@ const ModalConfig = () => {
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className="bg-white w-full max-w-full rounded-lg py-6 px-4"
+          className={`${theme === 'dark' && '!bg-neutral-800'} bg-white w-full max-w-full rounded-lg py-6 px-4 `}
         >
-          <h1 className="text-2xl font-medium text-[var(--color-3)]">
+          <h1 className={`${theme === 'dark' && 'text-zinc-300'} text-2xl font-medium text-[var(--color-3)]`}>
             Configurações
           </h1>
           <div className="flex items-center gap-4 mt-4">
-            <span className="font-medium">Tema</span>
+            <span className={`${theme === 'dark' && 'text-zinc-300'} font-medium`}>Tema</span>
             <div className="w-full flex items-center gap-5 justify-between border border-gray-300 p-2 rounded-full">
               <div onClick={setLight} className="bg-[var(--color-1)] cursor-pointer text-white py-1.5 flex-1 flex justify-center rounded-full">
                 <span>

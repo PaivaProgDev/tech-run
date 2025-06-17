@@ -11,9 +11,11 @@ import { useAuth } from "../contexts/AuthContext";
 import ViewPort from "../components/Global/ViewPort";
 import { Link } from "react-router-dom";
 import Button from "../components/Global/Button";
+import { usePreference } from '../contexts/PreferenceContext'
 
 const Historic = () => {
   const { races, data, handleDeleteUserInfo, loading } = useAuth();
+  const { theme } = usePreference()
 
   if (loading) {
     return <p>Carregando</p>;
@@ -44,10 +46,10 @@ const Historic = () => {
   };
 
   return (
-    <main className="pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen">
+    <main className={`${theme === 'dark' && '!bg-[#1f1f1f]'} pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen`}>
       <div className="flex items-center gap-2 mb-3">
         <History className="text-[var(--color-1)] size-7" />
-        <h1 className="text-2xl font-semibold text-[var(--color-3)]">
+        <h1 className={`${theme === 'dark' && '!text-[#c9c9c9]'} text-2xl font-semibold text-[var(--color-3)]`}>
           Histórico
         </h1>
       </div>
@@ -66,7 +68,7 @@ const Historic = () => {
         </Button>
       </Link>
       {viewPortSize >= 824 ? (
-        <div className="className='shadow-lg w-full mt-10 py-5 px-6 rounded-xl border-2 border-gray-200 bg-white flex flex-col mb-4">
+        <div className={`${theme === 'dark' && '!bg-neutral-800 !border border-neutral-600'} className='shadow-lg w-full mt-10 py-5 px-6 rounded-xl border-2 border-gray-200 bg-white flex flex-col mb-4`}>
           <div>
             <h2 className="text-[18px] font-medium text-[var(--color-3)]">
               Seu histórico de corridas
@@ -75,7 +77,7 @@ const Historic = () => {
           <pre className="text-[var(--color-2)] text-[16px] mt-1">
             Total de {races.length} corridas
           </pre>
-          <table className="border-collapse w-full mt-6 text-[var(--color-3)]">
+          <table className={`${theme === 'dark' && 'text-zinc-300'} border-collapse w-full mt-6 text-[var(--color-3)]`}>
             <thead>
               <tr>
                 <th className="border text-start  px-3 py-2 text-[13px] border-gray-200">
@@ -158,10 +160,11 @@ const Historic = () => {
           <div className="flex flex-col gap-4">
             {data ? (
               data.map((info) => (
+
                 <div key={info.id} className="w-full flex justify-center">
                   {info.data().isConcluded ? (
                     <div
-                      className={` p-4 border-2 border-gray-200 rounded-md bg-white w-full flex flex-col max-w-[22rem] shadow-md`}
+                      className={`${theme === 'dark' && '!bg-neutral-800 !border border-neutral-600 text-zinc-300 '} p-4 border-2 border-gray-200 rounded-md bg-white w-full flex flex-col max-w-[22rem] shadow-md`}
                     >
                       <div className="flex justify-between">
                         {info.data().isConcluded && (
@@ -169,11 +172,11 @@ const Historic = () => {
                         )}
                         <Trash
                           onClick={() => handleDeleteUserInfo(info.id)}
-                          className="size-5 text-[var(--color-1)]"
+                          className="size-5 text-[var(--color-1)] cursor-pointer"
                         />
                       </div>
                       <div className="text-center">
-                        <pre className="font-semibold mt-3 text-[var(--color-3)]">
+                        <pre className={`${theme === 'dark' && '!text-zinc-300'} font-bold text-[18px] mt-3 text-[var(--color-3)]`}>
                           {info.data().distance} km
                         </pre>
                       </div>
@@ -217,7 +220,8 @@ const Historic = () => {
                     </div>
                   ) : (
                     <div
-                      className={`p-4 rounded-md border-2 border-gray-200 bg-white w-full flex flex-col max-w-[22rem] shadow-md`}
+
+                      className={`${theme === 'dark' && '!bg-neutral-800 !border border-neutral-600 text-zinc-300 '} p-4 rounded-md border-2 border-gray-200 bg-white w-full flex flex-col max-w-[22rem] shadow-md`}
                     >
                       <div className="flex justify-between">
                         {!info.data().isConcluded && (
@@ -225,11 +229,11 @@ const Historic = () => {
                         )}
                         <Trash
                           onClick={() => handleDeleteUserInfo(info.id)}
-                          className="size-5 text-[var(--color-1)]"
+                          className="size-5 text-[var(--color-1)] cursor-pointer"
                         />
                       </div>
                       <div className="w-full items-center justify-center mt-3">
-                        <p className="text-[14px] text-[var(--color-2)]">
+                        <p className=" text-[var(--color-2)] font-medium">
                           Corrida não efetuada
                         </p>
                         <pre className="text-[14px] text-[var(--color-2)]">

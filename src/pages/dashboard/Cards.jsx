@@ -43,7 +43,7 @@ const Cards = () => {
         <>
             {
                 cards.map(card => (
-                    <div key={card.id} className={`${theme === 'dark' && '!bg-gray-900'} flex flex-col gap-4 w-full bg-white py-4 px-5 rounded-xl shadow-md`}>
+                    <div key={card.id} className={`${theme === 'dark' && '!bg-neutral-800'} flex flex-col gap-4 w-full bg-white py-4 px-5 rounded-xl shadow-md`}>
                         <div className='flex items-center justify-between'>
                             <span className={`${theme === 'dark' ? 'text-gray-400' : 'bg-white'} font-medium text-[var(--color-2)]`}>{card.title}</span>
                             <span className={`p-1.5 rounded-full ${card.id === 1 && "bg-[#d3e5fc]" || card.id === 2 && "bg-[#f1fde1]" || card.id === 3 && "bg-[#FDD3D3]" || card.id === 4 && "bg-[#fde6d3]" || card.id === 5 && "bg-[#d0c7fa]"}`}>{card.icon}</span>

@@ -5,10 +5,11 @@ import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../services/firebase";
+import { usePreference } from '../contexts/PreferenceContext'
 
 const AddRace = () => {
   const { userCredential, handleGetDataUser } = useAuth();
-
+  const { theme } = usePreference()
   const [date, setDate] = useState("");
   const [typeRace, setTypeRace] = useState("");
   const [period, setPeriod] = useState("");
@@ -76,10 +77,10 @@ const AddRace = () => {
   };
 
   return (
-    <main className="pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen">
+    <main className={`${theme === 'dark' && '!bg-[#1f1f1f] !border border-neutral-600'} pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen`}>
       <div className="flex items-center gap-2">
         <Activity className="text-[var(--color-1)]" />
-        <h1 className="text-2xl font-semibold text-[var(--color-3)]">
+        <h1 className={`${theme === 'dark' && 'text-zinc-300'} text-2xl font-semibold text-[var(--color-3)]`}>
           Adicionar Corrida
         </h1>
       </div>
@@ -88,7 +89,7 @@ const AddRace = () => {
       </p>
       <form
         onSubmit={handleAddRace}
-        className="shadow-lg w-full py-5 px-6 rounded-xl border-2 border-gray-200 bg-white flex flex-col gap-3 mb-4"
+        className={`${theme === 'dark' && '!bg-neutral-800 !border !border-zinc-600'} shadow-lg w-full py-5 px-6 rounded-xl border-2 border-gray-200 bg-white flex flex-col gap-3 mb-4`}
       >
         <label className="flex gap-2">
           <input
@@ -118,14 +119,15 @@ const AddRace = () => {
           required={true}
         />
         <div>
-          <span className="text-[12px]">Tipo</span>
+          <span className={`${theme === 'dark' && 'text-zinc-300'} text-[12px]`}>Tipo</span>
           <select
             value={typeRace}
             disabled={!isConcluded}
             onChange={(e) => {
               setTypeRace(e.target.value);
             }}
-            className="disabled:text-transparent w-full flex text-[13px] mt-2 items-center gap-3 border border-gray-200 bg-[var(--color-bg)] focus-within:border-[var(--color-1)] rounded-lg px-2.5 py-1.5"
+
+            className={`${theme === 'dark' && 'bg-zinc-700 border-0 text-zinc-300'} disabled:text-transparent w-full flex text-[13px] mt-2 items-center gap-3 border border-gray-200 bg-[var(--color-bg)] focus-within:border-[var(--color-1)] rounded-lg px-2.5 py-1.5`}
             required
           >
             <option value="" disabled>
@@ -136,14 +138,15 @@ const AddRace = () => {
           </select>
         </div>
         <div>
-          <span className="text-[12px]">Período</span>
+          <span className={`${theme === 'dark' && 'text-zinc-300'} text-[12px]`}>Período</span>
           <select
             value={period}
             disabled={!isConcluded}
             onChange={(e) => {
               setPeriod(e.target.value);
             }}
-            className="disabled:text-transparent w-full flex text-[13px] mt-2 items-center gap-3 border border-gray-200 bg-[var(--color-bg)] focus-within:border-[var(--color-1)] rounded-lg px-2.5 py-1.5"
+
+            className={`${theme === 'dark' && 'bg-zinc-700 border-0 text-zinc-300'} disabled:text-transparent w-full flex text-[13px] mt-2 items-center gap-3 border border-gray-200 bg-[var(--color-bg)] focus-within:border-[var(--color-1)] rounded-lg px-2.5 py-1.5`}
             required
           >
             <option value="" disabled>
@@ -155,7 +158,7 @@ const AddRace = () => {
           </select>
         </div>
         <Input
-          className="disabled:text-transparent"
+          className={`placeholder:${theme === 'dark' && 'text-zinc-300'} disabled:text-transparent`}
           onChange={handleDistanceChange}
           type={"tel"}
           titleName={"Distância (km)"}
