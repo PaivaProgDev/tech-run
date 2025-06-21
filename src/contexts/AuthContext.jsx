@@ -18,8 +18,6 @@ export const AuthProvider = ({ children }) => {
   const [data, setData] = useState();
   const [configModal, setConfigModal] = useState(false);
 
-
-
   const handleOpenModal = () => {
     setConfigModal(!configModal);
   };

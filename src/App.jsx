@@ -25,7 +25,7 @@ const App = () => {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
       {isAuthenticated && (
         <>
           <Aside />

@@ -8,6 +8,11 @@ const PreferenceContext = createContext();
 export const PreferenceProvider = ({ children }) => {
     const { userCredential } = useAuth()
     const [theme, setTheme] = useState('light')
+    const [asideIsOpen, setAsideIsOpen] = useState(false)
+
+    const modalController = () => {
+        setAsideIsOpen(!asideIsOpen)
+    }
 
     const savePreferenceTheme = async (uid, selectedTheme) => {
         try {
@@ -52,7 +57,7 @@ export const PreferenceProvider = ({ children }) => {
 
     }, [getPreferredThemeDb])
 
-    const value = { setDark, setLight, theme, getPreferredThemeDb };
+    const value = { setDark, setLight, theme, getPreferredThemeDb, asideIsOpen, modalController };
 
     return <PreferenceContext.Provider value={value}>{children}</PreferenceContext.Provider>;
 };

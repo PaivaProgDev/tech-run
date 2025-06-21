@@ -29,11 +29,13 @@ const Dashboard = () => {
             Adicionar corrida
           </Button>
         </Link>
-        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:place-self-center">
-          <Cards />
-        </div>
-        <div className="mt-10">
-          <LatestActivities />
+        <div className="flex flex-col items-center w-full">
+          <div className="flex flex-col w-full gap-3 sm:flex-row justify-center sm:flex-wrap sm:place-self-center">
+            <Cards />
+          </div>
+          <div className="mt-10 w-full flex justify-center">
+            <LatestActivities />
+          </div>
         </div>
       </div>
     </main>
