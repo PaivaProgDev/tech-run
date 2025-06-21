@@ -19,7 +19,7 @@ const Dashboard = () => {
         <p className="text-white text-[14px]">
           Veja o estado de suas atividades
         </p>
-        <Link to={"/add-race"} className="w-full flex justify-end">
+        <Link to={"/add-race"} className="w-full flex ">
           <Button
             className={
               "flex items-center mt-10 gap-3 text-[.88rem] mb-4 bg-white !text-[var(--color-1)] font-semibold"
@@ -29,7 +29,7 @@ const Dashboard = () => {
             Adicionar corrida
           </Button>
         </Link>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:place-self-center">
           <Cards />
         </div>
         <div className="mt-10">

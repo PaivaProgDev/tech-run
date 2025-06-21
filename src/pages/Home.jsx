@@ -1,8 +1,25 @@
 import { ArrowRightIcon } from "lucide-react"
 import Button from "../components/Global/Button"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useAuth } from "../contexts/AuthContext"
+import { useEffect } from "react"
+import Loading from "../components/Global/Loading"
 
 const Home = () => {
+    const { loading, setLoading, userCredential } = useAuth()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!loading && userCredential) {
+            navigate('/dashboard')
+        }
+
+    }, [userCredential, loading])
+
+    if (loading) {
+        return <Loading />;
+    }
+
 
     return (
         <>

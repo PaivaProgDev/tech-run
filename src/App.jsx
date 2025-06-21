@@ -18,7 +18,11 @@ const Home = lazy(() => import("./pages/Home"));
 const Medals = lazy(() => import("./pages/Medals"));
 
 const App = () => {
-  const { isAuthenticated, configModal } = useAuth();
+  const { isAuthenticated, configModal, loading } = useAuth();
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <main className="min-h-screen">

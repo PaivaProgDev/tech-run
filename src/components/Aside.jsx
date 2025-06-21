@@ -14,7 +14,7 @@ const Aside = () => {
 
     return (
         <aside className={`${theme === 'dark' && '!bg-[#1f1f1f] border-t-0'} fixed bottom-0 z-10 border-t border-gray-300 flex w-full ntext-[var(--color-3)] bg-white px-5 pt-4 pb-3`}>
-            <nav nav className='flex justify-between w-full relative ' >
+            <nav className='flex justify-between w-full relative ' >
                 <NavLink to={'/dashboard'} className={'flex flex-col items-center gap-1.5 '}>
                     {({ isActive }) => (
                         <>

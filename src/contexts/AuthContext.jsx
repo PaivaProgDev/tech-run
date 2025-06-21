@@ -3,6 +3,7 @@ import { auth } from "../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../services/firebase";
+import Loading from '../components/Global/Loading';
 
 const AuthContext = createContext();
 
@@ -16,6 +17,8 @@ export const AuthProvider = ({ children }) => {
   const [isConcluded, setIsConcluded] = useState([]);
   const [data, setData] = useState();
   const [configModal, setConfigModal] = useState(false);
+
+
 
   const handleOpenModal = () => {
     setConfigModal(!configModal);
@@ -59,10 +62,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
+
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+
       if (user) {
-        setUserCredential(user);
         setIsAuthenticated(true);
+        setUserCredential(user);
         handleGetDataUser(user);
       } else {
         setUserCredential(null);
@@ -70,6 +75,7 @@ export const AuthProvider = ({ children }) => {
       }
       setLoading(false);
     });
+
 
     return () => unsubscribe();
   }, []);

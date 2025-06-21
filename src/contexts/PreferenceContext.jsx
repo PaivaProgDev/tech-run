@@ -49,6 +49,7 @@ export const PreferenceProvider = ({ children }) => {
         if (userCredential) {
             getPreferredThemeDb(userCredential.uid)
         }
+
     }, [getPreferredThemeDb])
 
     const value = { setDark, setLight, theme, getPreferredThemeDb };
