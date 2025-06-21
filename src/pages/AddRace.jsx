@@ -21,15 +21,22 @@ const AddRace = () => {
   const handleAddRace = async (e) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "users", userCredential.uid, "races"), {
-        date: date,
-        typeRace: typeRace,
-        period: period || "",
-        duration: parseFloat(duration) || "",
-        distance: parseFloat(distance) || "",
-        calories: Number(calories || null),
-        isConcluded: Boolean(isConcluded),
-      });
+      await addDoc(collection(db, "users", userCredential.uid, "races"), isConcluded ?
+        {
+          date: date,
+          typeRace: typeRace,
+          period: period || "",
+          duration: parseFloat(duration) || "",
+          distance: parseFloat(distance) || "",
+          calories: Number(calories || null),
+          isConcluded: Boolean(isConcluded),
+        }
+        :
+        {
+          date: date,
+          isConcluded: Boolean(isConcluded),
+        }
+      );
 
       handleGetDataUser(userCredential);
     } catch (error) {
@@ -38,7 +45,6 @@ const AddRace = () => {
   };
 
   const handleDurationChange = (e) => {
-    // remove tudo que não for número
     let value = e.target.value.replace(/\D/g, "");
 
     value = value.slice(0, 6);
@@ -104,7 +110,6 @@ const AddRace = () => {
                 setDistance("");
                 setDuration("");
                 setCalories("");
-                setObservation("");
               }
             }}
           />

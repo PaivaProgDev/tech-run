@@ -5,6 +5,10 @@ import { usePreference } from '../../contexts/PreferenceContext'
 const Cards = () => {
     const { races, calories, distance, isConcluded } = useAuth()
     const { theme } = usePreference()
+    // Filtra as calorias que não são undefined
+    const filteredCalories = calories.filter((stamp) => stamp !== undefined)
+    // Filtra as distâncias que não são undefined
+    const filteredDistance = distance.filter((stamp) => stamp !== undefined)
 
     const cards = [
         {
@@ -29,13 +33,13 @@ const Cards = () => {
             id: 4,
             title: "Total de calorias",
             icon: <Flame className='text-[#c58132] size-4' />,
-            total: calories.reduce((acc, values) => acc + values, 0),
+            total: filteredCalories.reduce((acc, values) => acc + values, 0),
         },
         {
             id: 5,
             title: "Distância (Km)",
             icon: <Flag className='text-[#7134FF] size-4' />,
-            total: distance.reduce((acc, values) => acc + values, 0),
+            total: filteredDistance.reduce((acc, values) => acc + values, 0),
         },
     ]
 
