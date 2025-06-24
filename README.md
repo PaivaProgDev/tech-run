@@ -1,4 +1,4 @@
-🏃‍♂️ Tech Run — Seu Monitor Pessoal de Corridas
+#🏃‍♂️ Tech Run — Seu Monitor Pessoal de Corridas
 O Tech Run é uma aplicação web moderna criada para ajudar corredores a registrar, acompanhar e visualizar seu desempenho ao longo do tempo, de forma prática e segura.
 
 ![postspark_export_2025-06-24_13-57-05](https://github.com/user-attachments/assets/82257964-c320-4a4d-ad1b-2e92f44e9bf6)
