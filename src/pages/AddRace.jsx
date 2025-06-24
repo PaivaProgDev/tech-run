@@ -9,6 +9,7 @@ import { usePreference } from '../contexts/PreferenceContext'
 
 const AddRace = () => {
   const { userCredential, handleGetDataUser } = useAuth();
+  const { screenWidth, asideIsOpen } = usePreference()
   const { theme } = usePreference()
   const [date, setDate] = useState("");
   const [typeRace, setTypeRace] = useState("");
@@ -83,7 +84,7 @@ const AddRace = () => {
   };
 
   return (
-    <main className={`${theme === 'dark' && '!bg-[#1f1f1f] !border border-neutral-600'} pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen`}>
+    <main className={`${theme === 'dark' && '!bg-[#1f1f1f] !border border-neutral-600'} ${asideIsOpen && 'ml-49.5'} ${screenWidth >= 640 && 'ml-14.5'} transition-all pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen`}>
       <div className="flex items-center gap-2">
         <Activity className="text-[var(--color-1)]" />
         <h1 className={`${theme === 'dark' && 'text-zinc-300'} text-2xl font-semibold text-[var(--color-3)]`}>

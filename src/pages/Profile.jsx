@@ -27,7 +27,7 @@ const Profile = () => {
     handleOpenModal,
     configModal,
   } = useAuth();
-  const { theme } = usePreference()
+  const { theme, screenWidth, asideIsOpen } = usePreference()
   const monthNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const month = new Date().getMonth();
   const day = new Date().getDate();
@@ -61,7 +61,7 @@ const Profile = () => {
   return (
     <>
       {configModal && <ModalConfig />}
-      <section className={`${theme === 'dark' ? "bg-[#1f1f1f]" : "bg-linear-to-t from-slate-200 to-[var(--color-bg)]"} transition-all min-h-screen relative`}>
+      <section className={`${theme === 'dark' ? "bg-[#1f1f1f]" : "bg-linear-to-t from-slate-200 to-[var(--color-bg)]"} ${asideIsOpen && 'ml-49.5'} ${screenWidth >= 640 && 'ml-14.5'} transition-all min-h-screen relative`}>
         <div className="py-22 px-4 flex flex-col items-center relative">
           <div className="flex w-full items-center justify-between z-10">
             <div

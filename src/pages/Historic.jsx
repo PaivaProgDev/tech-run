@@ -15,7 +15,7 @@ import { usePreference } from '../contexts/PreferenceContext'
 
 const Historic = () => {
   const { races, data, handleDeleteUserInfo, loading } = useAuth();
-  const { theme } = usePreference()
+  const { theme, screenWidth, asideIsOpen } = usePreference()
 
   if (loading) {
     return <p>Carregando</p>;
@@ -46,7 +46,7 @@ const Historic = () => {
   };
 
   return (
-    <main className={`${theme === 'dark' && '!bg-[#1f1f1f]'} pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen`}>
+    <main className={`${theme === 'dark' && '!bg-[#1f1f1f]'} ${asideIsOpen && 'ml-49.5'} ${screenWidth >= 640 && 'ml-14.5'} transition-all pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen`}>
       <div className="flex items-center gap-2 mb-3">
         <History className="text-[var(--color-1)] size-7" />
         <h1 className={`${theme === 'dark' && '!text-[#c9c9c9]'} text-2xl font-semibold text-[var(--color-3)]`}>

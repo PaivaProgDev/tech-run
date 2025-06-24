@@ -9,10 +9,21 @@ export const PreferenceProvider = ({ children }) => {
     const { userCredential } = useAuth()
     const [theme, setTheme] = useState('light')
     const [asideIsOpen, setAsideIsOpen] = useState(false)
+    const [screenWidth, setScreenWidth] = useState(innerWidth)
 
     const modalController = () => {
         setAsideIsOpen(!asideIsOpen)
     }
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth)
+        }
+
+        window.addEventListener('resize', handleResize)
+
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
 
     const savePreferenceTheme = async (uid, selectedTheme) => {
         try {
@@ -57,7 +68,7 @@ export const PreferenceProvider = ({ children }) => {
 
     }, [getPreferredThemeDb])
 
-    const value = { setDark, setLight, theme, getPreferredThemeDb, asideIsOpen, modalController };
+    const value = { setDark, setLight, theme, getPreferredThemeDb, asideIsOpen, modalController, screenWidth };
 
     return <PreferenceContext.Provider value={value}>{children}</PreferenceContext.Provider>;
 };

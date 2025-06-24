@@ -6,10 +6,10 @@ import LatestActivities from "./LatestActivities";
 import { usePreference } from "../../contexts/PreferenceContext";
 
 const Dashboard = () => {
-  const { theme } = usePreference()
+  const { theme, asideIsOpen, screenWidth } = usePreference()
 
   return (
-    <main className={`${theme === 'dark' && '!bg-[#1f1f1f]'} bg-[var(--color-bg)] min-h-screen relative`}>
+    <main className={`${theme === 'dark' && '!bg-[#1f1f1f]'} ${asideIsOpen && 'ml-49.5'} ${screenWidth >= 640 && 'ml-14.5'} transition-all bg-[var(--color-bg)] min-h-screen relative`}>
       <div className={`${theme === 'dark' && '!bg-[#313131]'} bg-[var(--color-1)] absolute w-full h-78 -z-0 rounded-b-2xl`}></div>
       <div className="relative pt-22 px-4 pb-22">
         <div className={`flex items-center gap-2 mb-3`}>

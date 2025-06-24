@@ -4,20 +4,12 @@ import { NavLink } from 'react-router-dom'
 import { usePreference } from '../contexts/PreferenceContext'
 
 const Aside = () => {
-    const [screenWidth, setScreenWidth] = useState(innerWidth)
-    const { theme, modalController, asideIsOpen } = usePreference()
-
-    useEffect(() => {
-        window.addEventListener('resize', setScreenWidth(innerWidth))
-
-        return () => window.removeEventListener('resize', setScreenWidth(innerWidth))
-    })
-
+    const { theme, modalController, asideIsOpen, screenWidth } = usePreference()
 
     return (
         <>
             {
-                screenWidth >= 654 ? (
+                screenWidth >= 640 ? (
                     <aside className={`${theme === 'dark' && '!bg-[#1f1f1f] border-r-zinc-700'} ${asideIsOpen ? 'w-[200px]' : 'w-[61.5px]'} fixed transition-all mt-16 left-0 bottom-0 top-0 z-20 border-r border-gray-300 text-[var(--color-3)] bg-white`}>
                         <nav className='flex flex-col h-full justify-between gap-5 w-full relative ' >
                             <div className='flex flex-col'>
@@ -27,7 +19,7 @@ const Aside = () => {
                                 <NavLink to={'/dashboard'} className={`${!asideIsOpen && 'pointer-events-none'} relative flex items-center gap-3 px-5 pt-4 pb-3`}>
                                     {({ isActive }) => (
                                         <>
-                                            <LayoutDashboardIcon className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${!asideIsOpen && '!text-zinc-700'} ${theme === 'dark' && 'text-white'}  size-5`} />
+                                            <LayoutDashboardIcon className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${!asideIsOpen && 'text-zinc-700'} ${theme === 'dark' && 'text-white'}  size-5`} />
                                             <span className={`${isActive && '!text-[var(--color-1)]'} ${asideIsOpen ? 'left-13.5 ' : 'invisible'} ${theme === 'dark' && 'text-zinc-400'} absolute text-[13px] font-medium transition-opacity} `}>Painel</span>
                                         </>
                                     )}
@@ -35,7 +27,7 @@ const Aside = () => {
                                 <NavLink to={'/historic'} className={`${!asideIsOpen && 'pointer-events-none'} flex items-center gap-3 px-5 pt-4 pb-3`}>
                                     {({ isActive }) => (
                                         <>
-                                            <HistoryIcon className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${!asideIsOpen && '!text-zinc-700'} ${theme === 'dark' && 'text-white'} size-5`} />
+                                            <HistoryIcon className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${!asideIsOpen && 'text-zinc-700'} ${theme === 'dark' && 'text-white'} size-5`} />
                                             <span className={`${isActive && '!text-[var(--color-1)]'} ${asideIsOpen ? 'left-13.5 ' : 'invisible'} ${theme === 'dark' && 'text-zinc-400'} absolute text-[13px] font-medium transition-opacity"}`}>Histórico</span>
                                         </>
                                     )}
@@ -43,7 +35,7 @@ const Aside = () => {
                                 <NavLink to={'/add-race'} className={`${!asideIsOpen && 'pointer-events-none'} flex items-center gap-3 px-5 pt-4 pb-3`}>
                                     {({ isActive }) => (
                                         <>
-                                            <Plus className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${!asideIsOpen && '!text-zinc-700'} ${theme === 'dark' && 'text-white'} size-5`} />
+                                            <Plus className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${!asideIsOpen && 'text-zinc-700'} ${theme === 'dark' && 'text-white'} size-5`} />
                                             <span className={`${isActive && '!text-[var(--color-1)]'} ${asideIsOpen ? 'left-13.5 ' : 'invisible'} ${theme === 'dark' && 'text-zinc-400'} absolute text-[13px] font-medium transition-opacity"}`}>Adicionar</span>
                                         </>
                                     )}
@@ -51,7 +43,7 @@ const Aside = () => {
                                 <NavLink to={'/medals'} className={`${!asideIsOpen && 'pointer-events-none'} flex items-center gap-3 px-5 pt-4 pb-3`}>
                                     {({ isActive }) => (
                                         <>
-                                            <Medal className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${!asideIsOpen && '!text-zinc-700'} ${theme === 'dark' && 'text-white'} size-5`} />
+                                            <Medal className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${!asideIsOpen && 'text-zinc-700'} ${theme === 'dark' && 'text-white'} size-5`} />
                                             <span className={`${isActive && '!text-[var(--color-1)]'} ${asideIsOpen ? 'left-13.5 ' : 'invisible'} ${theme === 'dark' && 'text-zinc-400'} absolute text-[13px] font-medium transition-opacity"}`}>Medalhas</span>
                                         </>
                                     )}
@@ -60,7 +52,7 @@ const Aside = () => {
                             <NavLink to={'/profile'} className={`${!asideIsOpen && 'pointer-events-none'} flex items-center gap-3 px-5 pt-4 pb-5`}>
                                 {({ isActive }) => (
                                     <>
-                                        <UserIcon className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${!asideIsOpen && '!text-zinc-700'} ${theme === 'dark' && 'text-white'} size-5`} />
+                                        <UserIcon className={`${isActive && "opacity-100 !text-[var(--color-1)]"} ${!asideIsOpen && 'text-zinc-700'} ${theme === 'dark' && 'text-white'} size-5`} />
                                         <span className={`${isActive && '!text-[var(--color-1)]'} ${asideIsOpen ? 'left-13.5 ' : 'invisible'} ${theme === 'dark' && 'text-zinc-400'}  absolute text-[13px] font-medium  transition-opacity"}`}>Perfil</span>
                                     </>
                                 )}
