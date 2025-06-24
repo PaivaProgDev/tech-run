@@ -22,8 +22,8 @@ const Home = () => {
 
 
     return (
-        <>
-            <section className="flex flex-col min-h-screen justify-center items-center gap-4 py-6 px-5 bg-[var(--color-bg)]">
+        <section className="flex flex-col min-h-screen justify-center items-center gap-4 py-6 px-5 bg-[var(--color-bg)]">
+            <div>
                 <h1 className="text-3xl text-center text-[var(--color-3)]  font-extrabold">Gerencidor de corridas</h1>
                 <p className="text-[var(--color-2)] text-center">Acesse sua conta para gerenciar seus exercícios, metas calóricas e muito mais</p>
                 <div className="w-full flex gap-3 my-6">
@@ -72,8 +72,8 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </section>
-        </>
+            </div>
+        </section>
     )
 }
 
