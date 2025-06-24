@@ -1,12 +1,40 @@
-# React + Vite
+🏃‍♂️ Tech Run — Seu Monitor Pessoal de Corridas
+O Tech Run é uma aplicação web moderna criada para ajudar corredores a registrar, acompanhar e visualizar seu desempenho ao longo do tempo, de forma prática e segura.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![postspark_export_2025-06-24_13-57-05](https://github.com/user-attachments/assets/82257964-c320-4a4d-ad1b-2e92f44e9bf6)
 
-Currently, two official plugins are available:
+A plataforma permite que cada usuário crie sua conta pessoal, com autenticação segura via e-mail e senha, garantindo que apenas ele possa acessar e visualizar seus próprios dados.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+⚙️ Funcionalidades principais
+✅ Cadastro de corridas: o usuário registra manualmente cada corrida com informações como distância, tempo, calorias gastas, e data.
 
-## Expanding the ESLint configuration
+📊 Dashboard inteligente: um painel visual exibe gráficos e estatísticas de desempenho individual, como somatório de calorias, ritmo médio e evolução das distâncias.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🔐 Autenticação de usuários: cada pessoa tem acesso exclusivo aos seus dados. O login é feito via Firebase Auth, com validações e proteção de rotas.
+
+💾 Armazenamento em tempo real: os dados de cada corrida são salvos no Firebase Firestore e associados ao usuário autenticado, garantindo que cada conta veja apenas o seu histórico.
+
+📱 Design responsivo e moderno: o layout é adaptado para celular, tablet e desktop, com foco em uma experiência fluida.
+
+![postspark_export_2025-06-24_13-58-17](https://github.com/user-attachments/assets/25f5a42b-da8e-4755-9973-43b5dedd827e)
+
+🧠 Tecnologias utilizadas
+React – Para construção da interface do usuário
+
+Firebase Authentication – Para login, registro e autenticação segura
+
+Firebase Firestore – Para armazenar os dados de cada usuário separadamente
+
+React Router – Para navegação entre as páginas, com rotas protegidas
+
+Vercel – Hospedagem do projeto, garantindo velocidade e disponibilidade
+
+CSS Flex/Grid + Tailwind (opcional) – Para responsividade e estilo moderno
+
+
+🎯 Objetivo
+O Tech Run foi desenvolvido com o propósito de ser um diário digital de corrida: uma ferramenta onde qualquer pessoa, independente do nível, pode acompanhar sua evolução com dados claros, seguros e bem organizados.
+
+Cada usuário tem uma experiência personalizada, com total controle sobre seus registros, metas e progresso.
+
+
