@@ -37,6 +37,6 @@ O Tech Run foi desenvolvido com o propósito de ser um diário digital de corrid
 
 Cada usuário tem uma experiência personalizada, com total controle sobre seus registros, metas e progresso.
 
-### [Acesse o deploy em:](https://tech-run.vercel.app)
+### [Clique aqui para acessar o projeto](https://tech-run.vercel.app)
 
 
