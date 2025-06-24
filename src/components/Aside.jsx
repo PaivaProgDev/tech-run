@@ -1,7 +1,6 @@
-import { ChevronLeftIcon, ChevronRightIcon, HistoryIcon, LayoutDashboardIcon, Medal, Plus, PlusIcon, SettingsIcon, UserIcon } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import { ChevronRightIcon, HistoryIcon, LayoutDashboardIcon, Medal, Plus, UserIcon } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import Button from './Global/Button'
 import { usePreference } from '../contexts/PreferenceContext'
 
 const Aside = () => {
@@ -9,7 +8,9 @@ const Aside = () => {
     const { theme, modalController, asideIsOpen } = usePreference()
 
     useEffect(() => {
-        window.addEventListener('resize', setScreenWidth(innerHeight))
+        window.addEventListener('resize', setScreenWidth(innerWidth))
+
+        return () => window.removeEventListener('resize', setScreenWidth(innerWidth))
     })
 
 
@@ -66,7 +67,6 @@ const Aside = () => {
                             </NavLink>
                         </nav >
                     </aside >
-
                 ) : (
                     <aside className={`${theme === 'dark' && '!bg-[#1f1f1f] border-t-0'} fixed bottom-0 z-10 border-t border-gray-300 flex w-full ntext-[var(--color-3)] bg-white px-5 pt-4 pb-3`}>
                         <nav className='flex justify-between w-full relative ' >
