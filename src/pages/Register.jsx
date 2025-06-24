@@ -1,12 +1,11 @@
 import { EyeIcon, EyeOff, LockIcon, MailIcon, UserIcon } from 'lucide-react'
-import Input from '../components/Global/Input'
-import Button from '../components/Global/Button'
 import { useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 import { auth } from '../services/firebase'
-import Loading from '../components/Global/Loading'
 import { toast } from 'react-toastify'
+import Input from '../components/Global/Input'
+import Button from '../components/Global/Button'
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false)

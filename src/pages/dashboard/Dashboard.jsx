@@ -1,9 +1,9 @@
-import Cards from "./Cards";
-import Button from "../../components/Global/Button";
 import { CirclePlus, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
-import LatestActivities from "./LatestActivities";
 import { usePreference } from "../../contexts/PreferenceContext";
+import LatestActivities from "./LatestActivities";
+import Cards from "./Cards";
+import Button from "../../components/Global/Button";
 import ViewPort from '../../components/Global/ViewPort'
 
 const Dashboard = () => {

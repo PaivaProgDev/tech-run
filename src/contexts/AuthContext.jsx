@@ -3,7 +3,6 @@ import { auth } from "../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../services/firebase";
-import Loading from '../components/Global/Loading';
 
 const AuthContext = createContext();
 

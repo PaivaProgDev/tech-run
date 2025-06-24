@@ -1,11 +1,10 @@
 import { ChevronRightIcon, HistoryIcon, LayoutDashboardIcon, Medal, Plus, UserIcon } from 'lucide-react'
-import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { usePreference } from '../contexts/PreferenceContext'
 import ViewPort from './Global/ViewPort'
 
 const Aside = () => {
-    const { theme, modalController, asideIsOpen, screenWidth } = usePreference()
+    const { theme, modalController, asideIsOpen } = usePreference()
     const { viewPortSize } = ViewPort()
 
     return (

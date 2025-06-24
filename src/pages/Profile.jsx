@@ -1,3 +1,14 @@
+
+import { Link, useNavigate } from "react-router-dom";
+import { signOut, updateProfile } from "firebase/auth";
+import { auth } from "../services/firebase";
+import { useAuth } from "../contexts/AuthContext";
+import { FileUploaderRegular } from "@uploadcare/react-uploader";
+import { usePreference } from "../contexts/PreferenceContext";
+import { toast } from "react-toastify";
+import ModalConfig from "../components/ModalConfig";
+import "@uploadcare/react-uploader/core.css";
+import viewPort from '../components/Global/ViewPort'
 import {
   ArrowLeftIcon,
   ChevronRightIcon,
@@ -7,17 +18,6 @@ import {
   Settings2Icon,
   UserIcon,
 } from "lucide-react";
-
-import { Link, useNavigate } from "react-router-dom";
-import { signOut, updateProfile } from "firebase/auth";
-import { auth } from "../services/firebase";
-import { useAuth } from "../contexts/AuthContext";
-import { FileUploaderRegular } from "@uploadcare/react-uploader";
-import "@uploadcare/react-uploader/core.css";
-import ModalConfig from "../components/ModalConfig";
-import { usePreference } from "../contexts/PreferenceContext";
-import viewPort from '../components/Global/ViewPort'
-import { toast } from "react-toastify";
 
 const Profile = () => {
   const {

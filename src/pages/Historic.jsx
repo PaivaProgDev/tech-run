@@ -1,17 +1,16 @@
+import { useAuth } from "../contexts/AuthContext";
+import { Link } from "react-router-dom";
+import { usePreference } from '../contexts/PreferenceContext'
+import Button from "../components/Global/Button";
+import ViewPort from "../components/Global/ViewPort";
 import {
   Calendar,
   Flame,
   History,
-  PenBox,
   Timer,
   Trash,
   CirclePlus,
 } from "lucide-react";
-import { useAuth } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
-import Button from "../components/Global/Button";
-import { usePreference } from '../contexts/PreferenceContext'
-import ViewPort from "../components/Global/ViewPort";
 
 const Historic = () => {
   const { races, data, handleDeleteUserInfo, loading } = useAuth();

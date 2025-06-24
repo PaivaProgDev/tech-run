@@ -1,12 +1,12 @@
 import { EyeIcon, EyeOff, LockIcon, MailIcon } from 'lucide-react'
-import Input from '../components/Global/Input'
-import Button from '../components/Global/Button'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../services/firebase'
 import { useAuth } from '../contexts/AuthContext'
 import { toast } from 'react-toastify'
+import Input from '../components/Global/Input'
+import Button from '../components/Global/Button'
 
 const Login = () => {
     const { setIsAuthenticated, setUserCredential } = useAuth()

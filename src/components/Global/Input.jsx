@@ -1,6 +1,6 @@
 import { usePreference } from "../../contexts/PreferenceContext"
 
-const Input = ({ titleName, type, onChange, value, pattern, required, inputBox, eyeIcon, className, iconName, placeholder, minLength, maxLength, disabled }) => {
+const Input = ({ titleName, type, onChange, value, pattern, required, eyeIcon, className, iconName, placeholder, minLength, maxLength, disabled }) => {
     const { theme } = usePreference()
 
     return (

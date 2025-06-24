@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "./Global/Logo";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";

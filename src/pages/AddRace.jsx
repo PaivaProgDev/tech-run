@@ -1,13 +1,13 @@
-import Button from "../components/Global/Button";
-import Input from "../components/Global/Input";
 import { Activity, SaveIcon } from "lucide-react";
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../services/firebase";
 import { usePreference } from '../contexts/PreferenceContext'
-import viewPort from '../components/Global/ViewPort'
 import { toast } from "react-toastify";
+import Button from "../components/Global/Button";
+import Input from "../components/Global/Input";
+import viewPort from '../components/Global/ViewPort'
 
 const AddRace = () => {
   const { userCredential, handleGetDataUser } = useAuth();

@@ -1,7 +1,6 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import Button from '../components/Global/Button'
+import { useNavigate } from 'react-router-dom'
 import { AlertCircle, ArrowLeftIcon } from 'lucide-react'
+import Button from '../components/Global/Button'
 
 const NotFound = () => {
     const navigate = useNavigate()

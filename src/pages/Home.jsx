@@ -1,8 +1,8 @@
 import { ArrowRightIcon } from "lucide-react"
-import Button from "../components/Global/Button"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
 import { useEffect } from "react"
+import Button from "../components/Global/Button"
 import Loading from "../components/Global/Loading"
 
 const Home = () => {
