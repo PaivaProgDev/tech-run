@@ -17,6 +17,7 @@ import "@uploadcare/react-uploader/core.css";
 import ModalConfig from "../components/ModalConfig";
 import { usePreference } from "../contexts/PreferenceContext";
 import viewPort from '../components/Global/ViewPort'
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const {
@@ -41,6 +42,7 @@ const Profile = () => {
 
   const handleLogOut = () => {
     signOut(auth);
+    toast.warning('Você foi desconectado!')
     navigate("/login");
     setIsAuthenticated(false);
     setUserCredential(null);
@@ -48,9 +50,11 @@ const Profile = () => {
 
   const handleUpdatePhoto = async (cdnUrl) => {
     if (userCredential) {
-      updateProfile(userCredential, {
+      await updateProfile(userCredential, {
         photoURL: cdnUrl,
       });
+
+      toast.success('Foto atualizada com sucesso!')
 
       setUserCredential({
         ...userCredential,

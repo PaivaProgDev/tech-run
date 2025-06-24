@@ -7,7 +7,6 @@ import Loading from "./components/Global/Loading";
 import PublicRoute from "./routes/PublicRoutes";
 import PrivateRoute from "./routes/PrivateRoutes";
 import { useAuth } from "./contexts/AuthContext";
-import ModalConfig from "./components/ModalConfig";
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Login = lazy(() => import("./pages/Login"));
@@ -16,6 +15,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Historic = lazy(() => import("./pages/Historic"));
 const Home = lazy(() => import("./pages/Home"));
 const Medals = lazy(() => import("./pages/Medals"));
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const { isAuthenticated, configModal, loading } = useAuth();
@@ -26,6 +26,18 @@ const App = () => {
 
   return (
     <main className="min-h-screen relative">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       {isAuthenticated && (
         <>
           <Aside />

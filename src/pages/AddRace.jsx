@@ -7,6 +7,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { db } from "../services/firebase";
 import { usePreference } from '../contexts/PreferenceContext'
 import viewPort from '../components/Global/ViewPort'
+import { toast } from "react-toastify";
 
 const AddRace = () => {
   const { userCredential, handleGetDataUser } = useAuth();
@@ -24,7 +25,7 @@ const AddRace = () => {
   const handleAddRace = async (e) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "users", userCredential.uid, "races"), isConcluded ?
+      const addDocument = await addDoc(collection(db, "users", userCredential.uid, "races"), isConcluded ?
         {
           date: date,
           typeRace: typeRace,
@@ -41,9 +42,14 @@ const AddRace = () => {
         }
       );
 
-      handleGetDataUser(userCredential);
+      if (addDocument) {
+        toast.success('Corrida cadastrada com sucesso!')
+        handleGetDataUser(userCredential);
+      }
+
     } catch (error) {
       console.log(error.code);
+      toast.error('Houve um erro, tente novamente!')
     }
   };
 
