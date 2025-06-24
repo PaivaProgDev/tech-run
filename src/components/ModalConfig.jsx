@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { usePreference } from "../contexts/PreferenceContext";
 
 const ModalConfig = () => {
-  const { handleOpenModal, userCredential } = useAuth();
+  const { handleOpenModal } = useAuth();
   const { setDark, setLight, theme } = usePreference()
 
   return (
@@ -16,7 +16,7 @@ const ModalConfig = () => {
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`${theme === 'dark' && '!bg-neutral-800'} bg-white w-full max-w-full rounded-lg py-6 px-4 `}
+          className={`${theme === 'dark' && '!bg-neutral-800'} bg-white w-full max-w-80 rounded-lg py-6 px-4 `}
         >
           <h1 className={`${theme === 'dark' && 'text-zinc-300'} text-2xl font-medium text-[var(--color-3)]`}>
             Configurações

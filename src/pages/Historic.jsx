@@ -8,20 +8,19 @@ import {
   CirclePlus,
 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
-import ViewPort from "../components/Global/ViewPort";
 import { Link } from "react-router-dom";
 import Button from "../components/Global/Button";
 import { usePreference } from '../contexts/PreferenceContext'
+import ViewPort from "../components/Global/ViewPort";
 
 const Historic = () => {
   const { races, data, handleDeleteUserInfo, loading } = useAuth();
-  const { theme, screenWidth, asideIsOpen } = usePreference()
+  const { theme, asideIsOpen } = usePreference()
+  const { viewPortSize } = ViewPort()
 
   if (loading) {
     return <p>Carregando</p>;
   }
-
-  const { viewPortSize } = ViewPort();
 
   const verifyStyleTable = (data) => {
     if (data === "Manhã") {
@@ -46,7 +45,7 @@ const Historic = () => {
   };
 
   return (
-    <main className={`${theme === 'dark' && '!bg-[#1f1f1f]'} ${asideIsOpen && 'ml-49.5'} ${screenWidth >= 640 && 'ml-14.5'} transition-all pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen`}>
+    <main className={`${theme === 'dark' && '!bg-[#1f1f1f]'} ${asideIsOpen && 'ml-49.5'} ${viewPortSize >= 640 && 'ml-14.5'} transition-all pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen`}>
       <div className="flex items-center gap-2 mb-3">
         <History className="text-[var(--color-1)] size-7" />
         <h1 className={`${theme === 'dark' && '!text-[#c9c9c9]'} text-2xl font-semibold text-[var(--color-3)]`}>
@@ -60,7 +59,7 @@ const Historic = () => {
       <Link to={"/add-race"}>
         <Button
           className={
-            "flex items-center mt-10 gap-3 text-[.88rem] justify-center mb-4 w-full"
+            "flex items-center mt-10 gap-3 text-[.88rem] justify-center mb-4 w-full sm:w-fit"
           }
         >
           <CirclePlus />

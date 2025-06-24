@@ -6,10 +6,12 @@ import { addDoc, collection } from "firebase/firestore";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../services/firebase";
 import { usePreference } from '../contexts/PreferenceContext'
+import viewPort from '../components/Global/ViewPort'
 
 const AddRace = () => {
   const { userCredential, handleGetDataUser } = useAuth();
-  const { screenWidth, asideIsOpen } = usePreference()
+  const { asideIsOpen } = usePreference()
+  const { viewPortSize } = viewPort()
   const { theme } = usePreference()
   const [date, setDate] = useState("");
   const [typeRace, setTypeRace] = useState("");
@@ -84,7 +86,7 @@ const AddRace = () => {
   };
 
   return (
-    <main className={`${theme === 'dark' && '!bg-[#1f1f1f] !border border-neutral-600'} ${asideIsOpen && 'ml-49.5'} ${screenWidth >= 640 && 'ml-14.5'} transition-all pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen`}>
+    <main className={`${theme === 'dark' && '!bg-[#1f1f1f] !border border-neutral-600'} ${asideIsOpen && 'ml-49.5'} ${viewPortSize >= 640 && 'ml-14.5'} transition-all pt-22 px-4 pb-22 bg-[var(--color-bg)] min-h-screen`}>
       <div className="flex items-center gap-2">
         <Activity className="text-[var(--color-1)]" />
         <h1 className={`${theme === 'dark' && 'text-zinc-300'} text-2xl font-semibold text-[var(--color-3)]`}>
@@ -96,7 +98,7 @@ const AddRace = () => {
       </p>
       <form
         onSubmit={handleAddRace}
-        className={`${theme === 'dark' && '!bg-neutral-800 !border !border-zinc-600'} shadow-lg w-full py-5 px-6 rounded-xl border-2 border-gray-200 bg-white flex flex-col gap-3 mb-4`}
+        className={`${theme === 'dark' && '!bg-neutral-800 !border !border-zinc-600'} sm:max-w-200 m-auto shadow-lg w-full py-5 px-6 rounded-xl border-2 border-gray-200 bg-white flex flex-col gap-3 mb-4`}
       >
         <label className="flex gap-2">
           <input
@@ -123,6 +125,7 @@ const AddRace = () => {
           type={"date"}
           titleName={"Data"}
           required={true}
+
         />
         <div>
           <span className={`${theme === 'dark' && 'text-zinc-300'} text-[12px]`}>Tipo</span>

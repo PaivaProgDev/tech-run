@@ -2,14 +2,16 @@ import { ChevronRightIcon, HistoryIcon, LayoutDashboardIcon, Medal, Plus, UserIc
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { usePreference } from '../contexts/PreferenceContext'
+import ViewPort from './Global/ViewPort'
 
 const Aside = () => {
     const { theme, modalController, asideIsOpen, screenWidth } = usePreference()
+    const { viewPortSize } = ViewPort()
 
     return (
         <>
             {
-                screenWidth >= 640 ? (
+                viewPortSize >= 640 ? (
                     <aside className={`${theme === 'dark' && '!bg-[#1f1f1f] border-r-zinc-700'} ${asideIsOpen ? 'w-[200px]' : 'w-[61.5px]'} fixed transition-all mt-16 left-0 bottom-0 top-0 z-20 border-r border-gray-300 text-[var(--color-3)] bg-white`}>
                         <nav className='flex flex-col h-full justify-between gap-5 w-full relative ' >
                             <div className='flex flex-col'>

@@ -1,6 +1,5 @@
 import {
   ArrowLeftIcon,
-  ArrowRightIcon,
   ChevronRightIcon,
   LayoutDashboard,
   LogOutIcon,
@@ -9,7 +8,7 @@ import {
   UserIcon,
 } from "lucide-react";
 
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signOut, updateProfile } from "firebase/auth";
 import { auth } from "../services/firebase";
 import { useAuth } from "../contexts/AuthContext";
@@ -17,6 +16,7 @@ import { FileUploaderRegular } from "@uploadcare/react-uploader";
 import "@uploadcare/react-uploader/core.css";
 import ModalConfig from "../components/ModalConfig";
 import { usePreference } from "../contexts/PreferenceContext";
+import viewPort from '../components/Global/ViewPort'
 
 const Profile = () => {
   const {
@@ -27,7 +27,8 @@ const Profile = () => {
     handleOpenModal,
     configModal,
   } = useAuth();
-  const { theme, screenWidth, asideIsOpen } = usePreference()
+  const { theme, asideIsOpen } = usePreference()
+  const { viewPortSize } = viewPort()
   const monthNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const month = new Date().getMonth();
   const day = new Date().getDate();
@@ -61,7 +62,7 @@ const Profile = () => {
   return (
     <>
       {configModal && <ModalConfig />}
-      <section className={`${theme === 'dark' ? "bg-[#1f1f1f]" : "bg-linear-to-t from-slate-200 to-[var(--color-bg)]"} ${asideIsOpen && 'ml-49.5'} ${screenWidth >= 640 && 'ml-14.5'} transition-all min-h-screen relative`}>
+      <section className={`${theme === 'dark' ? "bg-[#1f1f1f]" : "bg-linear-to-t from-slate-200 to-[var(--color-bg)]"} ${asideIsOpen && 'ml-49.5'} ${viewPortSize >= 640 && 'ml-14.5'} transition-all min-h-screen relative`}>
         <div className="py-22 px-4 flex flex-col items-center relative">
           <div className="flex w-full items-center justify-between z-10">
             <div
